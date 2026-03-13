@@ -1,5 +1,4 @@
 # Imports
-from weapons import fists
 import weapons
 
 # Player character
@@ -8,18 +7,22 @@ class Character:
         self.name   = name
         self.max_hp = max_hp
         self.hp     = hp
-        self.weapon = fists
+        self.weapon = weapons.weapons['fists']
         self.inv    = inv
 
     def attack(self, target):
         target.hp -= self.weapon.dmg
 
     def change_weapon(self):
+        # Allows the player to change weapon
         player_input = input('>').lower()
         if player_input in self.inv:
-            add_to_inventory(self.inv, self.weapon)
-            self.weapon = player_input
-            self.inv.remove(player_input)
+            add_to_inventory(self.inv, {self.weapon.name: 1})
+            try:
+                self.weapon = weapons.weapons[player_input]
+                del self.inv[player_input]
+            except KeyError:
+                print("there is no such weapon in the inventory")
 
 # Enemies character
 class Enemy:
@@ -33,9 +36,13 @@ class Enemy:
     def attack(self, target):
         target.hp -= self.weapon.dmg
 
+    def ressurection(self):
+        # Apparently the enemies don't respawn automaticaly, didn't think i had to do it myself, but thinking about it, it makes sense
+        if self.hp <= 0:
+            self.hp = self.max_hp
 # Enemies
-goblin = Enemy('Goblin', 5, 5, weapons.rusty_dagger, {'Rusty Dagger': 1, 'rag': 1})
-slime = Enemy('Slime', 8, 8, weapons.acid_body, {'slime chunk': 1})
+goblin = Enemy('Goblin', 5, 5, weapons.weapons['rusty dagger'], {'rusty dagger': 1, 'rag': 1})
+slime = Enemy('Slime', 8, 8, weapons.weapons['acid body'], {'slime chunk': 1})
 
 
 
