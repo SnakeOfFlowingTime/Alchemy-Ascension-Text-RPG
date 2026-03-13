@@ -1,0 +1,55 @@
+# Imports
+from weapons import fists
+import weapons
+
+# Player character
+class Character:
+    def __init__(self, name: str, max_hp: int, hp: int, inv: dict):
+        self.name   = name
+        self.max_hp = max_hp
+        self.hp     = hp
+        self.weapon = fists
+        self.inv    = inv
+
+    def attack(self, target):
+        target.hp -= self.weapon.dmg
+
+    def change_weapon(self):
+        player_input = input('>').lower()
+        if player_input in self.inv:
+            add_to_inventory(self.inv, self.weapon)
+            self.weapon = player_input
+            self.inv.remove(player_input)
+
+# Enemies character
+class Enemy:
+    def __init__(self, name: str, max_hp: int, hp: int, weapon, loot: dict):
+        self.name   = name
+        self.max_hp = max_hp
+        self.hp     = hp
+        self.weapon = weapon
+        self.loot = loot
+
+    def attack(self, target):
+        target.hp -= self.weapon.dmg
+
+# Enemies
+goblin = Enemy('Goblin', 5, 5, weapons.rusty_dagger, {'Rusty Dagger': 1, 'rag': 1})
+slime = Enemy('Slime', 8, 8, weapons.acid_body, {'slime chunk': 1})
+
+
+
+# To display the inventory and to add stuff to it, it's a mess but it works
+def display_inventory(inventory):
+    print('inventory: ')
+    for k, v in inventory.items():
+        print(str(k) + ': ' + str(v))
+
+def add_to_inventory(inventory, item):
+    for key, value in item.items():    
+        if key in inventory:
+            inventory[key] = inventory[key] + value
+            print(str(key) + ' added to inventory')
+        else:
+            inventory.setdefault(key, value)
+            print(str(key) + ' added to inventory')
