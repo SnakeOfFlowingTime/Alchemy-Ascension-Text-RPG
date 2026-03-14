@@ -14,6 +14,7 @@ from characters import Enemy
 
 
 def save():
+    # This is straigth up not working, idk why
     with open('save file.json', 'w') as save_file:
         player_data = {'name': player.name,
                'hp': player.hp,
@@ -23,7 +24,7 @@ def save():
                'location': saveable_location
                     }
         json.dump(player_data, save_file, indent=4)
-    
+    # This is working as inteded as far as i can see
     with open('zones save file.json', 'w') as zone_save_file:
         zones_data = {'town square items': zones.zones['town square'].item,
                 'town market items': zones.zones['town market'].item,
@@ -31,6 +32,15 @@ def save():
                 'forest 0 0 items': zones.zones['forest 0 0'].item
                    }
         json.dump(zones_data, zone_save_file, indent=4)
+
+def load():
+    # idk if this is working, test it after fixing the saving part, but it might be working
+    global player_data, zones_data
+    with open('save file.json') as player_save:
+        player_data = json.load(player_save)
+    with open('zones save file.json') as zones_save:
+        zones_data = json.load(zones_save)
+
 
 
 def enemy_spawn():
@@ -66,14 +76,22 @@ def battle(enemy):
     print(f'{player.name} has {player.hp} health left')
     input('>')
 
-# Tittle screen
-titlescreen.title_screen()
-
-# Some variables
+# Some variables, suspect moving these breaks the code
+player_data = {}
+zones_data = {}
 inventory = {}
 current_location = zones.zones['town square']
 saveable_location = current_location.id
-player = Character(name='Player', max_hp=15, hp=15, inv=inventory, weapon=weapons.weapons['fists'])
+current_location = zones.zones[saveable_location]
+
+# Title screen
+if titlescreen.title_screen() == 'load':
+    load()
+    print(zones.zones[saveable_location].name + '\n' + zones.zones[saveable_location].description)
+
+# Some variables
+player = Character(name=player_data['name'], max_hp=player_data['maxhp'], hp=player_data['hp'],
+                   inv=player_data['inventory'], weapon=weapons.weapons[player_data['weapon']])
 weak_enemies = [characters.goblin, characters.slime]
 battling = False
 
@@ -106,6 +124,8 @@ while True:
         print(current_location.description)
         print('you see: ' + str(current_location.item) + ' in this place')
     
+    elif player_input == 'save':
+        save()
     # Status menu
     elif player_input in ['status', 'stats']:
         print(
