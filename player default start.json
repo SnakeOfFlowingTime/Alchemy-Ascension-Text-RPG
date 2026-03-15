@@ -4,5 +4,6 @@
     "maxhp": 15,
     "inventory": {},
     "weapon": "fists",
+    "armor": "linen clothing",
     "location": "town square"
 }

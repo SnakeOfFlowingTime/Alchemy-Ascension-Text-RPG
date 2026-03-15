@@ -5,6 +5,7 @@ import sys
 import os
 import Zones
 import titlescreen
+import armor
 import weapons
 import characters
 import random
@@ -22,7 +23,8 @@ def save():
                'hp': player.hp,
                'maxhp': player.max_hp,
                'inventory': player.inv,
-               'weapon': player.weapon.name,
+               'weapon': player.weapon.id,
+               'armor': player.armor.id,
                'location': current_location.id
                     }
         json.dump(player_data, save_file, indent=4)
@@ -75,11 +77,11 @@ def battle(enemy):
         characters.Enemy.ressurection(enemy)
         return False
     player.attack(target=enemy)
-    print(f'{player.name} has attacked {enemy.name} with {player.weapon.name} for {player.weapon.dmg}.')
+    print(f'{player.name} has attacked {enemy.name} with {player.weapon.name} for {player.weapon.dmg - enemy.armor.defense}.')
     print(f'{enemy.name} has {enemy.hp} health left')
     input('>')
     Enemy.attack(self=enemy, target=player)
-    print(f'{enemy.name} has attacked {player.name} with {enemy.weapon.name} for {enemy.weapon.dmg}')
+    print(f'{enemy.name} has attacked {player.name} with {enemy.weapon.name} for {enemy.weapon.dmg - player.armor.defense}')
     print(f'{player.name} has {player.hp} health left')
     input('>')
 
@@ -103,7 +105,8 @@ elif return_output == 'load':
 
 # Some variables
 player = Character(name=player_data['name'], max_hp=player_data['maxhp'], hp=player_data['hp'],
-                   inv=player_data['inventory'], weapon=weapons.weapons[player_data['weapon']])
+                   inv=player_data['inventory'],armor=armor.armors[player_data['armor']],
+                    weapon=weapons.weapons[player_data['weapon']])
 weak_enemies = [characters.goblin, characters.slime]
 battling = False
 current_location = Zones.zones[player_data['location']]
@@ -146,11 +149,14 @@ Health: {player.hp}/{player.max_hp}
 Weapon Name: {player.weapon.name}
 Weapon Type: {player.weapon.type}
 Weapon Damage: {player.weapon.dmg}
+Armor Name: {player.armor.name}
+Armor Type: {player.armor.type}
+Armor Defense: {player.armor.defense}
 """)    
     
     # Taking stuff from the zone
     elif player_input in ['take', 'get']:
-        print('what would you like to take: ' + str(current_location.item)  + '?')
+        print(f'what would you like to {player_input}: ' + str(current_location.item)  + '?')
         action = input('>').lower()
         if action in current_location.item:
             output = current_location.getItem(action)
@@ -158,14 +164,22 @@ Weapon Damage: {player.weapon.dmg}
         else:
             print('no such item')
     
-    # Change weapon
+    # Change weapon and armor
     elif player_input in ['switch', 'change', 'equip', 'swap']:
-        print(f'to which weapon would you like to change? {player.inv}')
-        player.change_weapon()
+        print(f"what would you like to {player_input}? ['armor'] or ['weapon']")
+        sub_input = input('>').lower()
+        if sub_input == 'weapon':
+            print(f'to which weapon would you like to {player_input}? {player.inv}')
+            player.change_weapon()
+        elif sub_input == 'armor':
+            print(f'to which armor would you like to {player_input}? {player.inv}')
+            player.change_armor()
+        else:
+            print(f'no such item type: {sub_input}')
 
     # Moving around
     elif player_input in ['move', 'go', 'travel']:
-        print('where would you like to go?')
+        print(f'where would you like to {player_input}?')
         direction = input('>').lower()
         if direction == 'north' and current_location.north != None:
             current_location = current_location.north

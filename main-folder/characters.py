@@ -1,24 +1,26 @@
 # Imports
 import weapons
+import armor
 
 # Player character
 class Character:
-    def __init__(self, name: str, max_hp: int, hp: int, inv: dict, weapon):
+    def __init__(self, name: str, max_hp: int, hp: int, inv: dict, weapon, armor):
         self.name     = name
         self.max_hp   = max_hp
         self.hp       = hp
         self.weapon   = weapon
         self.inv      = inv
+        self.armor = armor
 
     def attack(self, target):
         # Attacks enemies
-        target.hp -= self.weapon.dmg
+        target.hp -= (self.weapon.dmg - target.armor.defense)
 
     def change_weapon(self):
         # Allows the player to change weapon
         player_input = input('>').lower()
         if player_input in self.inv and player_input in weapons.weapons.keys():
-            add_to_inventory(self.inv, {self.weapon.name: 1})
+            add_to_inventory(self.inv, {self.weapon.id: 1})
             try:
                 self.weapon = weapons.weapons[player_input]
                 del self.inv[player_input]
@@ -27,25 +29,38 @@ class Character:
         else:
             print("there is no such weapon in the inventory")
 
+    def change_armor(self):
+        player_input = input('>').lower()
+        if player_input in self.inv and player_input in armor.armors.keys():
+            add_to_inventory(self.inv, {self.armor.id: 1})
+            try:
+                self.armor = armor.armors[player_input]
+                del self.inv[player_input]
+            except KeyError:
+                print("there is no such armor in the inventory")
+        else:
+            print("there is no such armor in the inventory")
+
 # Enemies character
 class Enemy:
-    def __init__(self, name: str, max_hp: int, hp: int, weapon, loot: dict):
+    def __init__(self, name: str, max_hp: int, hp: int, weapon, armor, loot: dict):
         self.name   = name
         self.max_hp = max_hp
         self.hp     = hp
         self.weapon = weapon
         self.loot = loot
+        self.armor = armor
 
     def attack(self, target):
         # Attacks player
-        target.hp -= self.weapon.dmg
+        target.hp -= (self.weapon.dmg - target.armor.defense)
 
     def ressurection(self):
         # Makes so that enemies have full health on encounter
             self.hp = self.max_hp
 # Enemies
-goblin = Enemy('Goblin', 5, 5, weapons.weapons['rusty dagger'], {'rusty dagger': 1, 'rag': 1})
-slime = Enemy('Slime', 8, 8, weapons.weapons['acid body'], {'slime chunk': 1})
+goblin = Enemy('Goblin', 5, 5, weapons.weapons['rusty dagger'], armor.armors['no armor'], {'rusty dagger': 1, 'rag': 1})
+slime = Enemy('Slime', 8, 8, weapons.weapons['acid body'], armor.armors['no armor'], {'slime chunk': 1})
 
 
 
