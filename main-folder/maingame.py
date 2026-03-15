@@ -75,16 +75,39 @@ def battle(enemy):
         print('GAME OVER!')
         input('>')
         sys.exit()
+    
+    # Player action
+    print('what do you do?')
+    print('attack, use item, escape, or skip turn?')
+    player_input = input('>').lower()
+    if player_input in ['attack', 'hit']:
+        player.attack(target=enemy)
+        print(f'{player.name} has attacked {enemy.name} with {player.weapon.name} for {player.weapon.dmg - enemy.armor.defense}.')
+        print(f'{enemy.name} has {enemy.hp} health left')
+        input('>')
+    elif player_input in ['use', 'consume']:
+        print(f"which item would you like to {player_input}? {player.inv}")
+        player.heal_self()
+
+    elif player_input in ['escape', 'run']:
+        characters.Enemy.ressurection(enemy)
+        return False
+    
+    elif player_input in ['skip']:
+        pass
+
+    else:
+        return True
+    
+    # What to do when win
     if enemy.hp <= 0 and player.hp > 0:
         add_to_inventory(player.inv, enemy.loot)
         player.exp += enemy.expvalue
         print(f"Exp + {enemy.expvalue}")
         characters.Enemy.ressurection(enemy)
         return False
-    player.attack(target=enemy)
-    print(f'{player.name} has attacked {enemy.name} with {player.weapon.name} for {player.weapon.dmg - enemy.armor.defense}.')
-    print(f'{enemy.name} has {enemy.hp} health left')
-    input('>')
+    
+    # Enemy attack
     Enemy.attack(self=enemy, target=player)
     print(f'{enemy.name} has attacked {player.name} with {enemy.weapon.name} for {enemy.weapon.dmg - player.armor.defense}')
     print(f'{player.name} has {player.hp} health left')
