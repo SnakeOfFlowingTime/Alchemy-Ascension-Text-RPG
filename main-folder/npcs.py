@@ -152,7 +152,7 @@ with open('merchant save file.json') as merchant_save:
 # Merchant npcs
 merchants = {'town merchant': Merchant(name = 'Town Nerchant', id = 'town merchant',
                                        description = 'just an ordinary merchant in an ordinary town',
-                                       selling = {'weak bow': 1}, location ='town market',
+                                       selling = merchant_data['town market merchant stock'], location ='town market',
                                        )
 
 

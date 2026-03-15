@@ -1,8 +1,5 @@
 # Imports
-import weapons
-import armor
-import items
-import time
+import weapons, armor, items, time
 
 # Player character
 class Character:
@@ -55,7 +52,10 @@ class Character:
             add_to_inventory(self.inv, {self.weapon.id: 1})
             try:
                 self.weapon = weapons.weapons[player_input]
-                del self.inv[player_input]
+                if self.inv[player_input] > 1:
+                    self.inv[player_input] -= 1
+                else:
+                    del self.inv[player_input]
             except KeyError:
                 print("there is no such weapon in the inventory")
         else:
@@ -68,7 +68,10 @@ class Character:
             add_to_inventory(self.inv, {self.armor.id: 1})
             try:
                 self.armor = armor.armors[player_input]
-                del self.inv[player_input]
+                if self.inv[player_input] > 1:
+                    self.inv[player_input] -= 1
+                else:
+                    del self.inv[player_input]
             except KeyError:
                 print("there is no such armor in the inventory")
         else:
