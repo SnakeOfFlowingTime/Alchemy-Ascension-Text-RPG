@@ -1,5 +1,9 @@
 {
     "town market merchant stock": {
-        "weak bow": 1
+        "weak bow": 2,
+        "t0 bandage": 20,
+        "iron sword": 1,
+        "wooden sword": 4,
+        "weak wood armor": 1
     }
 }

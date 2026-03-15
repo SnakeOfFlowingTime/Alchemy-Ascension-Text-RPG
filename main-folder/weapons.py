@@ -13,9 +13,12 @@ weapons = {
 
 'wooden sword' : Weapon(name = 'Wooden Sword', id = 'wooden sword', type = 'blunt', dmg = 2, value = 1),
 
-'weak bow' : Weapon(name = 'Weak Bow', id = 'weak bow', type = 'bow', dmg = 3, value = 3),
+'weak bow' : Weapon(name = 'Weak Bow', id = 'weak bow', type = 'bow', dmg = 3, value = 4),
 
 'rusty dagger' : Weapon(name = 'Rusty Dagger', id = 'rusty dagger', type = 'short blade', dmg = 2, value = 2),
 
 'acid body' : Weapon(name = 'Acidic Body', id = 'acid body', type = 'acid', dmg = 2, value = 1),
+
+'iron sword': Weapon(name = 'Iron Sword', id = 'iron sword', type = 'sword', dmg = 4, value = 8),
+
 }

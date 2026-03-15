@@ -70,7 +70,7 @@ def enemy_spawn():
         return False
 
 def battle(enemy):
-    # Battle system, gotta maybe improve this later, low priority really
+    # Battle system, now improved
     if player.hp <= 0:
         print('GAME OVER!')
         input('>')
