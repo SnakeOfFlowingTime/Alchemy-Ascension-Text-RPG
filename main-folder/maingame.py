@@ -160,7 +160,7 @@ Weapon Damage: {player.weapon.dmg}
     
     # Change weapon
     elif player_input in ['switch', 'change', 'equip', 'swap']:
-        print(f'to which weapon would you like to change?{player.inv}')
+        print(f'to which weapon would you like to change? {player.inv}')
         player.change_weapon()
 
     # Moving around

@@ -42,7 +42,30 @@ def title_screen_options():
         # Help menu, still not very helpfull
         if option == 'help':
             valid_command = False
-            print("use 'go' to move, 'take' to take items, 'look' to survey the surroundings")
+            print(""" 
+================================================================================================================================                
+| Note: all commands must be typed exactly or you will get a 'invalid command' prompt.                                         |
+|                                                                                                                              |
+| Commands: ['look' or 'examine'] to get a name, description and items that can be picked up;                                  |
+|                                                                                                                              |
+| ['status' or 'stats'] to see the status menu;                                                                                |
+|                                                                                                                              |
+| ['take' or 'get'] to get the items you see using ['look' or 'examine'],                                                      |
+|                                                                                                                              |
+| after typing one of the 'take' commands you must type the name of the item;                                                  |
+|                                                                                                                              |
+| ['switch', 'change', 'equip' or 'swap'] to change current weapon, after typing the command you must enter the weapon's name; |
+|                                                                                                                              |
+| ['move', 'go', 'travel'] to move, after typing the command you must also                                                     |
+| type one of the four cardinal directions ['north', 'south', 'east' or 'west];                                                |
+|                                                                                                                              |
+| ['quit'] to quit the game, it will also auto save before exiting;                                                            |
+|                                                                                                                              |
+| ['save'] to save the game;                                                                                                   |
+|                                                                                                                              |
+| Note 2: you can use 'Enter' to skip 1 turn.                                                                                  |
+================================================================================================================================
+""")
             input('>')
         
         # Quit

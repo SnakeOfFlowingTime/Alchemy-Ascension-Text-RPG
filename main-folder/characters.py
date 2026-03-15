@@ -24,6 +24,8 @@ class Character:
                 del self.inv[player_input]
             except KeyError:
                 print("there is no such weapon in the inventory")
+        else:
+            print("there is no such weapon in the inventory")
 
 # Enemies character
 class Enemy:
