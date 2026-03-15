@@ -21,6 +21,7 @@ def save():
                'location': current_location.id
                     }
         json.dump(player_data, save_file, indent=4)
+    
     # Save map data
     with open('zones save file.json', 'w') as zone_save_file:
         zones_data = {'town square items': Zones.zones['town square'].item,
@@ -29,6 +30,12 @@ def save():
                 'forest 0 0 items': Zones.zones['forest 0 0'].item
                    }
         json.dump(zones_data, zone_save_file, indent=4)
+
+    # Save merchant data
+    with open('merchant save file.json', 'w') as merchant_save:
+        merchant_data = {'town market merchant stock': npcs.merchants['town merchant'].selling
+                         }
+        json.dump(merchant_data, merchant_save, indent=4)
 
 def load():
     # Load save file
@@ -40,10 +47,13 @@ def wipe():
     # Wipes save file
     player_default_start = 'player default start.json'
     zones_default_start = 'zones default start.json'
+    merchant_default_start = 'merchant default start.json'
     player_save = 'save file.json'
     zones_save = 'zones save file.json'
+    merchant_save = 'merchant save file.json'
     shutil.copy2(player_default_start, player_save)
     shutil.copy2(zones_default_start, zones_save)
+    shutil.copy2(merchant_default_start, merchant_save)
 
 def enemy_spawn():
     # this "spawns" the enemy
@@ -68,6 +78,7 @@ def battle(enemy):
     if enemy.hp <= 0 and player.hp > 0:
         add_to_inventory(player.inv, enemy.loot)
         player.exp += enemy.expvalue
+        print(f"Exp + {enemy.expvalue}")
         characters.Enemy.ressurection(enemy)
         return False
     player.attack(target=enemy)

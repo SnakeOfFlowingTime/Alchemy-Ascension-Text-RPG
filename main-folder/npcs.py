@@ -1,4 +1,4 @@
-import items, weapons, armor
+import items, weapons, armor, json
 from characters import add_to_inventory
 # Merchant npcs
 class Merchant:
@@ -71,12 +71,15 @@ class Merchant:
                     if number < 0:
                         print('please enter positive number')
                         return
-                    if buying in items.items:
+                    if buying in items.items and target.money >= items.items[buying].value * number:
                         print(f'that will be {items.items[buying].value * number}')
-                    elif buying in weapons.weapons:
+                    elif buying in weapons.weapons and target.money >= weapons.weapons[buying].value * number:
                         print(f'that will be {weapons.weapons[buying].value * number}')
-                    elif buying in armor.armors:
+                    elif buying in armor.armors and target.money >= armor.armors[buying].value * number:
                         print(f'that will be {armor.armors[buying].value * number}')
+                    else:
+                        print(f"you don't have enough money to buy {number} {buying}")
+                        return
                     print(f'are you sure you want to buy {number} {buying}?')
                     y_n = input('>').lower()
                     if y_n in ['yes', 'y']:
@@ -140,6 +143,10 @@ class Merchant:
                 print(f"i don't sell {buying}")
         except ValueError:
             print('must be a number in digit form')
+
+# Load game
+with open('merchant save file.json') as merchant_save:
+    merchant_data = json.load(merchant_save)
 
 
 # Merchant npcs
