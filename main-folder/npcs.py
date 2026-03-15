@@ -78,20 +78,53 @@ class Merchant:
                     y_n = input('>').lower()
                     if y_n in ['yes', 'y']:
                         if buying in items.items:
-                            target.money -= items.items[buying].value * number
-                            purchase = {buying: number}
-                            add_to_inventory(target.inv, purchase)
-                            ('congratulations on your purchase')
+                            if number < self.selling[buying]:
+                                target.money -= items.items[buying].value * number
+                                purchase = {buying: number}
+                                add_to_inventory(target.inv, purchase)
+                                ('congratulations on your purchase')
+                                self.selling[buying] -= number
+                            elif number > self.selling[buying]:
+                                print(f"i don't have that many {buying} to sell")
+                                return
+                            elif number == self.selling[buying]:
+                                del self.selling[buying]
+                                target.money -= items.items[buying].value * number
+                                purchase = {buying: number}
+                                add_to_inventory(target.inv, purchase)
+                                ('congratulations on your purchase')
                         elif buying in weapons.weapons:
-                            target.money -= weapons.weapons[buying].value * number
-                            purchase = {buying: number}
-                            add_to_inventory(target.inv, purchase)
-                            ('congratulations on your purchase')
+                            if number < self.selling[buying]:
+                                target.money -= weapons.weapons[buying].value * number
+                                purchase = {buying: number}
+                                add_to_inventory(target.inv, purchase)
+                                ('congratulations on your purchase')
+                                self.selling[buying] -= number
+                            elif number > self.selling[buying]:
+                                print(f"i don't have that many {buying} to sell")
+                                return
+                            elif number == self.selling[buying]:
+                                del self.selling[buying]
+                                target.money -= weapons.weapons[buying].value * number
+                                purchase = {buying: number}
+                                add_to_inventory(target.inv, purchase)
+                                ('congratulations on your purchase')
                         elif buying in armor.armors:
-                            target.money -= armor.armors[buying].value * number
-                            purchase = {buying: number}
-                            add_to_inventory(target.inv, purchase)
-                            ('congratulations on your purchase')
+                            if number < self.selling[buying]:
+                                target.money -= armor.armors[buying].value * number
+                                purchase = {buying: number}
+                                add_to_inventory(target.inv, purchase)
+                                ('congratulations on your purchase')
+                                self.selling[buying] -= number
+                            elif number > self.selling[buying]:
+                                print(f"i don't have that many {buying} to sell")
+                                return
+                            elif number == self.selling[buying]:
+                                del self.selling[buying]
+                                target.money -= armor.armors[buying].value * number
+                                purchase = {buying: number}
+                                add_to_inventory(target.inv, purchase)
+                                ('congratulations on your purchase')
                         else:
                             print('something somehow went wrong')
                     elif y_n in ['no', 'n']:
@@ -109,7 +142,7 @@ class Merchant:
 # Merchant npcs
 merchants = {'town merchant': Merchant(name = 'Town Nerchant', id = 'town merchant',
                                        description = 'just an ordinary merchant in an ordinary town',
-                                       selling = {'weak bow': 3}, location ='town market',
+                                       selling = {'weak bow': 1}, location ='town market',
                                        )
 
 
