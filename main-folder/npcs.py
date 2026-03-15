@@ -68,6 +68,9 @@ class Merchant:
                 number = input('>')
                 number = int(number)
                 if number <= self.selling[buying]:
+                    if number < 0:
+                        print('please enter positive number')
+                        return
                     if buying in items.items:
                         print(f'that will be {items.items[buying].value * number}')
                     elif buying in weapons.weapons:
@@ -132,7 +135,7 @@ class Merchant:
                     else:
                         print('must be an yes or no answer')
                 else:
-                    print(f"i don't have that many {buying}")
+                    print(f"i don't have {number} {buying}")
             else:
                 print(f"i don't sell {buying}")
         except ValueError:
