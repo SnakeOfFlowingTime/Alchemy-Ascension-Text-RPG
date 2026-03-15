@@ -1,15 +1,5 @@
 # Imports, a lot of them
-import time
-import shutil
-import sys
-import os
-import Zones
-import titlescreen
-import armor
-import weapons
-import characters
-import random
-import json
+import time, shutil, sys, os, Zones, titlescreen, armor, weapons, characters, random, json, npcs
 from characters import add_to_inventory
 from characters import display_inventory
 from characters import Character
@@ -27,6 +17,7 @@ def save():
                'armor': player.armor.id,
                'level': player.lvl,
                'exp': player.exp,
+               'money': player.money,
                'location': current_location.id
                     }
         json.dump(player_data, save_file, indent=4)
@@ -109,7 +100,9 @@ elif return_output == 'load':
 # Some variables
 player = Character(name=player_data['name'], max_hp=player_data['maxhp'], hp=player_data['hp'],
                    inv=player_data['inventory'],armor=armor.armors[player_data['armor']],
-                    weapon=weapons.weapons[player_data['weapon']], lvl=player_data['level'], exp=player_data['exp'])
+                    weapon=weapons.weapons[player_data['weapon']], lvl=player_data['level'],
+                    exp=player_data['exp'], money=player_data['money'])
+
 weak_enemies = [characters.goblin, characters.slime]
 battling = False
 current_location = Zones.zones[player_data['location']]
@@ -142,6 +135,7 @@ while True:
     elif player_input in ['look', 'examine']:
         print(current_location.name)
         print(current_location.description)
+        print('you see a(n): ' + current_location.npc)
         print('you see: ' + str(current_location.item) + ' in this place')
     
     # Status menu
@@ -154,9 +148,21 @@ Exp: {player.exp}/{player.lvl * 100}
 Weapon Name: {player.weapon.name}   Armor Name: {player.armor.name} 
 Weapon Type: {player.weapon.type}   Armor Type: {player.armor.type}
 Weapon Damage: {player.weapon.dmg}  Armor Defense: {player.armor.defense}
-
+Money: {player.money}
 """)    
     
+    elif player_input in ['sell']:
+        print(f'which merchant would you like to sell stuff to: {current_location.npc}?')
+        answer = input('>').lower()
+        if answer in current_location.npc:
+            npcs.merchants[current_location.npc].buy(player)
+
+    elif player_input in ['buy', 'acquire']:
+        print(f'from which merchant would you like to buy stuff from: {current_location.npc}?')
+        answer = input('>').lower()
+        if answer in current_location.npc:
+            npcs.merchants[current_location.npc].sell(player)
+
     # Taking stuff from the zone
     elif player_input in ['take', 'get']:
         print(f'what would you like to {player_input}: ' + str(current_location.item)  + '?')

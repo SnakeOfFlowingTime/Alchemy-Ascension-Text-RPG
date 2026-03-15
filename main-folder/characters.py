@@ -6,7 +6,7 @@ import time
 
 # Player character
 class Character:
-    def __init__(self, name: str, max_hp: int, hp: int, inv: dict, weapon, armor, lvl: int, exp: int):
+    def __init__(self, name: str, max_hp: int, hp: int, inv: dict, weapon, armor, lvl: int, exp: int, money: int):
         self.name     = name
         self.max_hp   = max_hp
         self.hp       = hp
@@ -15,6 +15,7 @@ class Character:
         self.armor = armor
         self.lvl = lvl
         self.exp = exp
+        self.money = money
 
 
     def attack(self, target):
@@ -22,6 +23,7 @@ class Character:
         target.hp -= (self.weapon.dmg - target.armor.defense)
 
     def lvlup(self):
+        # Level up
         if self.exp >= self.lvl * 100:
             self.exp = self.exp - self.lvl * 100
             self.lvl += 1
@@ -33,6 +35,7 @@ class Character:
             print(f"you don't have enough experience points to level up, current exp: {self.exp}, exp needed to level up: {self.lvl * 100}")
 
     def rest(self):
+        # Rest, heals for number after number * 2 of seconds
         print('how long to rest?')
         number = input('>')
         number = int(number)
@@ -72,6 +75,7 @@ class Character:
             print("there is no such armor in the inventory")
     
     def heal_self(self):
+        # Allows the player to consume a healing item to recover hp
         player_input = input('>').lower()
         if player_input in self.inv and player_input in items.items.keys():
             print(f'used {player_input} to heal {items.items[player_input].hpheal} health points')

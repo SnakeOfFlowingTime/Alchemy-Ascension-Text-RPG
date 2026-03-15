@@ -19,7 +19,7 @@ items = {
 't0 bandage': HealItem(name = 'Slime-Based Bandages', id = 't0 bandage',
 description = 'bandages infused with specially treated slime, very effective in healing small wounds', 
 value = 1, hpheal = 3),
-
+'rag': Item(name = 'Rag', id = 'rag', description = 'a torn and dirty piece of rag', value = 1),
 
 
 }

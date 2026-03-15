@@ -1,0 +1,75 @@
+import items, weapons, armor
+# Merchant npcs
+class Merchant:
+    def __init__(self, name: str, id: str, description: str, selling: dict, location: str):
+        self.name = name
+        self.id = id
+        self.description = description
+        self.selling = selling
+        self.location = location
+    
+    # For the player to sell stuff, untested
+    def buy(self, target):
+        print('what would you like to sell?')
+        print(target.inv)
+        sell = input('>').lower()
+        try:
+            if sell in target.inv:
+                print('and how many would you like to sell?')
+                number = input('>').lower()
+                number = int(number)
+                if number >= 0 and items.items[sell].value > 0 or weapons.weapons[sell].value > 0 or armor.armors[sell].value > 0:
+                    if number < target.inv[sell]:
+                        target.inv[sell] -= number
+                        target.money += items.items[sell].value * number or weapons.weapons[sell].value * number or armor.armors[sell].value * number
+                        print(f"you've sold: {number} {sell}")
+                    elif number == target.inv[sell]:
+                        target.money += items.items[sell].value * number or weapons.weapons[sell].value * number or armor.armors[sell].value * number
+                        del target.inv[sell]
+                        print(f"you've sold: {number} {sell}")
+                    else:
+                        print(f"you don't have that much {sell} to sell or the item you are trying to sell is worthless/cannot be sold")
+                else:
+                    print('please enter a positive number')
+        except ValueError:
+            print('please enter a number in digit form')
+
+    # For the player to buy stuff, untested
+    def sell(self, target):
+        print('what would you like to buy?')
+        print(f"{self.selling}")
+        buying = input('>').lower()
+        try:
+            if buying in self.selling:
+                print('and how many would you like to buy?')
+                number = input('>')
+                number = int(number)
+                if number <= self.selling[buying]:
+                    print(f'that will be {self.selling[buying].value * number}')
+                    print(f'are you sure you want to buy {number} {buying}?')
+                    y_n = input('>').lower()
+                    if y_n in ['yes', 'y']:
+                        target.money -= self.selling[buying].value * number
+                        target.inv += {buying: number}
+                        print('congratulations on your purchase')
+                    elif y_n in ['no', 'n']:
+                        return
+                    else:
+                        print('must be an yes or no answer')
+                else:
+                    print(f"i don't have that many {buying}")
+            else:
+                print(f"i don't sell {buying}")
+        except ValueError:
+            print('must be a number in digit form')
+
+
+# Merchant npcs
+merchants = {'town merchant': Merchant(name = 'Town Nerchant', id = 'town merchant',
+                                       description = 'just an ordinary merchant in an ordinary town',
+                                       selling = {'weak bow': 3}, location ='town market',
+                                       )
+
+
+
+}

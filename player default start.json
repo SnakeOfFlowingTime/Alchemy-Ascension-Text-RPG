@@ -7,5 +7,6 @@
     "armor": "linen clothing",
     "level": 1,
     "exp": 0,
+    "money": 0,
     "location": "town square"
 }
