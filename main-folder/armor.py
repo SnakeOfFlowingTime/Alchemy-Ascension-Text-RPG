@@ -10,24 +10,11 @@ class Armor:
 
 
 armors = {
-'no armor': Armor(name = 'No Armor',
-                  id = 'no armor',
-                  type = 'none',
-                  defense = 0,
-                  value = 0
-                  ),
-'linen clothing': Armor(name = 'Linen Clothes',
-                        id = 'linen clothing',
-                        type = 'cloth',
-                        defense = 0,
-                        value = 2
-                        ),
-'weak wood armor': Armor(name = 'Weak Wood Armor',
-                         id = 'weak wood armor',
-                         type = 'wood',
-                         defense = 1,
-                         value = 10,
-                         )
+'no armor': Armor(name = 'No Armor', id = 'no armor', type = 'unarmored', defense = 0, value = 0),
+
+'linen clothing': Armor(name = 'Linen Clothes', id = 'linen clothing', type = 'cloth', defense = 0, value = 2),
+
+'weak wood armor': Armor(name = 'Weak Wood Armor', id = 'weak wood armor', type = 'wood', defense = 1, value = 10),
 
 
 

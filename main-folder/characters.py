@@ -1,6 +1,7 @@
 # Imports
 import weapons
 import armor
+import items
 
 # Player character
 class Character:
@@ -30,6 +31,7 @@ class Character:
             print("there is no such weapon in the inventory")
 
     def change_armor(self):
+        # Allows the player to change armor
         player_input = input('>').lower()
         if player_input in self.inv and player_input in armor.armors.keys():
             add_to_inventory(self.inv, {self.armor.id: 1})
@@ -40,6 +42,31 @@ class Character:
                 print("there is no such armor in the inventory")
         else:
             print("there is no such armor in the inventory")
+    
+    def heal_self(self):
+        player_input = input('>').lower()
+        if player_input in self.inv and player_input in items.items.keys():
+            print(f'used {player_input} to heal {items.items[player_input].hpheal} health points')
+            try:
+                if self.hp + items.items[player_input].hpheal > self.max_hp and self.inv[player_input] == 1:
+                    self.hp = self.max_hp
+                    del self.inv[player_input]
+                elif self.hp + items.items[player_input].hpheal > self.max_hp and self.inv[player_input] > 1:
+                    self.hp = self.max_hp
+                    self.inv[player_input] -= 1
+                else:
+                    if self.inv[player_input] > 1:
+                        self.hp += items.items[player_input].hpheal
+                        self.inv[player_input] -= 1
+                    elif self.inv[player_input] == 1:
+                        self.hp += items.items[player_input].hpheal
+                        del self.inv[player_input]
+            except KeyError:
+                print("there is no such healing item in the inventory")
+        else:
+            print("there is no such healing item in the inventory")
+
+
 
 # Enemies character
 class Enemy:

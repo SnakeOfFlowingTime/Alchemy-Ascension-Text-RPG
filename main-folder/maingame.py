@@ -176,6 +176,11 @@ Armor Defense: {player.armor.defense}
             player.change_armor()
         else:
             print(f'no such item type: {sub_input}')
+    
+    # Use items, just heals for now though
+    elif player_input in ['use', 'consume']:
+        print(f"which item would you like to {player_input}? {player.inv}")
+        player.heal_self()
 
     # Moving around
     elif player_input in ['move', 'go', 'travel']:
