@@ -125,11 +125,14 @@ class Enemy:
     def ressurection(self):
         # Makes so that enemies have full health on encounter
             self.hp = self.max_hp
+
 # Enemies
-goblin = Enemy('Goblin', 5, 5, weapons.weapons['rusty dagger'], armor.armors['no armor'], 10,{'rusty dagger': 1, 'rag': 1})
-slime = Enemy('Slime', 8, 8, weapons.weapons['acid body'], armor.armors['no armor'], 20,{'slime chunk': 1})
-
-
+enemies = {
+'goblin': Enemy(name = 'Goblin', max_hp = 5, hp = 5, weapon = weapons.weapons['rusty dagger'],
+                armor = armor.armors['no armor'], expvalue = 10, loot = {'rusty dagger': 1, 'rag': 1}),
+'slime': Enemy(name = 'Slime', max_hp = 8, hp = 8, weapon = weapons.weapons['acid body'],
+               armor = armor.armors['no armor'], expvalue = 20, loot = {'slime chunk': 1}),                
+                }
 
 # To display the inventory and to add stuff to it, it's a mess but it works
 def display_inventory(inventory):
