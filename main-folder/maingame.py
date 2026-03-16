@@ -142,8 +142,9 @@ if return_output == 'wipe':
     wipe()
     print('overwriting...')
     time.sleep(1)
-    print(Zones.zones['town square'].name + '\n' + Zones.zones['town square'].description)
-    load()
+    print('please rejoin to load new save')
+    input('>')
+    sys.exit()
 elif return_output == 'load':
     load()
     print(Zones.zones[player_data['location']].name + '\n' + Zones.zones[player_data['location']].description)
