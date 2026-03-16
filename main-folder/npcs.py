@@ -18,6 +18,15 @@ class Merchant:
             
             # Checks if it's a real item
             if sell in target.inv and sell in items.items or sell in weapons.weapons or sell in armor.armors:
+                if items.items[f'{sell}'].value == 0:
+                    print(f'this item ({sell}) is worthless/cannot be sold')
+                    return
+                if weapons.weapons[f'{sell}'].value == 0:
+                    print(f'this item ({sell}) is worthless/cannot be sold')
+                    return
+                if armor.armors[f'{sell}'].value == 0:
+                    print(f'this item ({sell}) is worthless/cannot be sold')
+                    return
                 print('and how many would you like to sell?')
                 number = input('>').lower()
                 number = int(number)
@@ -58,6 +67,8 @@ class Merchant:
                         print(f"you don't have that much {sell} to sell")
                 else:
                     print('please enter a positive non zero number or the item you are trying to sell is worthless/cannot be sold')
+            else:
+                print(f"you don't have {sell}")
         except ValueError:
             print('please enter a number in digit form')
 
