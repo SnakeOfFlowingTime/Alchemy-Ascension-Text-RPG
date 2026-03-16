@@ -15,7 +15,7 @@ class HealItem(Item):
         self.hpheal = hpheal
 
 
-
+# Items
 items = {
 't0 bandage': HealItem(name = 'Slime-Based Bandages', id = 't0 bandage',
 description = 'bandages infused with specially treated slime, very effective in healing small wounds', 

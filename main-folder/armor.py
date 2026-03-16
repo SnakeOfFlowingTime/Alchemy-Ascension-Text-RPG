@@ -8,7 +8,7 @@ class Armor:
         self.defense = defense
         self.value = value
 
-
+# Armors
 armors = {
 'no armor': Armor(name = 'No Armor', id = 'no armor', type = 'unarmored', defense = 0, value = 0),
 

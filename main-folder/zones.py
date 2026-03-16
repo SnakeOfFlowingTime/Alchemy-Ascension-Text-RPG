@@ -14,7 +14,7 @@ class Zones:
         self.npc         = npc
 
     def getItem(self, item_name):
-        # Get stuff from the zone, took a while to fix
+        # Get stuff from the zone
         if item_name in self.item:
             for key, value in self.item.items():
                 if item_name == key:
@@ -26,9 +26,7 @@ class Zones:
             return False
 
 def file_path(relative_path):
-    # Python is such a selfish language, can't even share my work easily D:
-    # i have no idea what this does exactly, i'm pissed i had to copy code
-    # for such a basic reason as letting other people run my code easily
+    # For the .exe to find the .json file needed to work
     try:
         base_path = sys._MEIPASS
     except Exception: 

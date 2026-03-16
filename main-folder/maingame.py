@@ -6,9 +6,7 @@ from characters import Character
 from characters import Enemy
 
 def file_path(relative_path):
-    # Python is such a selfish language, can't even share my work easily D:
-    # i have no idea what this does exactly, i'm pissed i had to copy code
-    # for such a basic reason as letting other people run my code easily
+    # For the .exe to find the .json file needed to work
     try:
         base_path = sys._MEIPASS
     except Exception: 
@@ -93,19 +91,22 @@ def battle(enemy):
     print('what do you do?')
     print('(a)ttack, (u)se item, (e)scape, or (s)kip turn?')
     player_input = input('>').lower()
+    
+    # Attack
     if player_input in ['attack', 'hit', 'a']:
         player.attack(target=enemy)
         print(f'{player.name} has attacked {enemy.name} with {player.weapon.name} for {player.weapon.dmg - enemy.armor.defense}.')
         print(f'{enemy.name} has {enemy.hp} health left')
         input('>')
+    # Use
     elif player_input in ['use', 'consume', 'u']:
         print(f"which item would you like to {player_input}? {player.inv}")
         player.heal_self()
-
+    # Escape
     elif player_input in ['escape', 'run', 'e']:
         characters.Enemy.ressurection(enemy)
         return False
-    
+    # Skip turn
     elif player_input in ['skip', 's']:
         pass
 
