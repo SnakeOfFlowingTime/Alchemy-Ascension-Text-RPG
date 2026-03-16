@@ -46,22 +46,32 @@ def title_screen_options():
 ================================================================================================================================                
 | Note: all commands must be typed exactly or you will get a 'invalid command' prompt.                                         |
 |                                                                                                                              |
-| Commands: ['look' or 'examine'] to get a name, description and items that can be picked up;                                  |
+| Commands: ['look' or 'examine'] to get a name, description and items that can be picked up as well as a list of npcs in      |
+|           the current zone;                                                                                                  |
 |                                                                                                                              |
 | ['status' or 'stats'] to see the status menu;                                                                                |
 |                                                                                                                              |
 | ['take' or 'get'] to get the items you see using ['look' or 'examine'],                                                      |
-|                                                                                                                              |
 | after typing one of the 'take' commands you must type the name of the item;                                                  |
 |                                                                                                                              |
-| ['switch', 'change', 'equip' or 'swap'] to change current weapon, after typing the command you must enter the weapon's name; |
+| ['switch', 'change', 'equip' or 'swap'] to change current weapon/armor,                                                      |
+| after typing the command you must enter the weapon/armor name;                                                               |
 |                                                                                                                              |
-| ['move', 'go', 'travel'] to move, after typing the command you must also                                                     |
-| type one of the four cardinal directions ['north', 'south', 'east' or 'west];                                                |
+| ['move', 'go', 'travel', 'm'] to move, after typing the command you must also                                                |
+| type one of the four cardinal directions ['north' or 'n', 'south' or 's', 'east' or 'e', 'west' or 'w'];                     |
 |                                                                                                                              |
 | ['quit'] to quit the game, it will also auto save before exiting;                                                            |
 |                                                                                                                              |
 | ['save'] to save the game;                                                                                                   |
+|                                                                                                                              |
+| ['sell'] to sell stuff to a merchant;                                                                                        |
+|                                                                                                                              |
+| ['buy', 'acquire'] to buy stuff from a merchant;                                                                             |
+|                                                                                                                              |
+| ['rest', 'sleep'] to rest, resting saves the game and heals for the amount you input, though it does take twice the number   |
+| of seconds you input to do so;                                                                                               |
+|                                                                                                                              |
+| ['lvl up', 'lvlup', 'level up'] to level up, leveling up increases max hp;                                                   |
 |                                                                                                                              |
 | Note 2: you can use 'Enter' to skip 1 turn.                                                                                  |
 ================================================================================================================================

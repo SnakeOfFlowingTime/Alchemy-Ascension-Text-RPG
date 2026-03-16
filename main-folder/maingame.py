@@ -78,22 +78,22 @@ def battle(enemy):
     
     # Player action
     print('what do you do?')
-    print('attack, use item, escape, or skip turn?')
+    print('(a)ttack, (u)se item, (e)scape, or (s)kip turn?')
     player_input = input('>').lower()
-    if player_input in ['attack', 'hit']:
+    if player_input in ['attack', 'hit', 'a']:
         player.attack(target=enemy)
         print(f'{player.name} has attacked {enemy.name} with {player.weapon.name} for {player.weapon.dmg - enemy.armor.defense}.')
         print(f'{enemy.name} has {enemy.hp} health left')
         input('>')
-    elif player_input in ['use', 'consume']:
+    elif player_input in ['use', 'consume', 'u']:
         print(f"which item would you like to {player_input}? {player.inv}")
         player.heal_self()
 
-    elif player_input in ['escape', 'run']:
+    elif player_input in ['escape', 'run', 'e']:
         characters.Enemy.ressurection(enemy)
         return False
     
-    elif player_input in ['skip']:
+    elif player_input in ['skip', 's']:
         pass
 
     else:
@@ -169,7 +169,8 @@ while True:
     elif player_input in ['look', 'examine']:
         print(current_location.name)
         print(current_location.description)
-        print('you see a(n): ' + current_location.npc)
+        if current_location.npc != None:
+            print('you see a(n): ' + str(current_location.npc))
         print('you see: ' + str(current_location.item) + ' in this place')
     
     # Status menu
@@ -187,17 +188,23 @@ Money: {player.money}
     
     # Selling stuff
     elif player_input in ['sell']:
-        print(f'which merchant would you like to sell stuff to: {current_location.npc}?')
-        answer = input('>').lower()
-        if answer in current_location.npc:
-            npcs.merchants[answer].buy(player)
-    
+        if current_location.npc != None:
+            print(f'which merchant would you like to sell stuff to: {current_location.npc}?')
+            answer = input('>').lower()
+            if answer in current_location.npc:
+                npcs.merchants[answer].buy(player)
+        else:
+            print("there's no merchant here to sell stuff to")
+
     # Buying stuff
     elif player_input in ['buy', 'acquire']:
-        print(f'from which merchant would you like to buy stuff from: {current_location.npc}?')
-        answer = input('>').lower()
-        if answer in current_location.npc:
-            npcs.merchants[answer].sell(player)
+        if current_location.npc != None:
+            print(f'from which merchant would you like to buy stuff from: {current_location.npc}?')
+            answer = input('>').lower()
+            if answer in current_location.npc:
+                npcs.merchants[answer].sell(player)
+        else:
+            print("there's no merchant here to buy from")
 
     # Taking stuff from the zone
     elif player_input in ['take', 'get']:
@@ -231,25 +238,26 @@ Money: {player.money}
     elif player_input in ['lvl up', 'lvlup', 'level up']:
         player.lvlup()
     
-    # Rest to heal
+    # Rest to heal, also save
     elif player_input in ['rest', 'sleep']:
+        # Save just in case someone inputs 99999999... and get stuck waiting for 2 irl years or smth
+        save()
         player.rest()
-        print('you have rested')
 
     # Moving around
-    elif player_input in ['move', 'go', 'travel']:
+    elif player_input in ['move', 'go', 'travel', 'm']:
         print(f'where would you like to {player_input}?')
         direction = input('>').lower()
-        if direction == 'north' and current_location.north != None:
+        if direction in ['north', 'n'] and current_location.north != None:
             current_location = current_location.north
             print(current_location.name + '\n' + current_location.description)
-        elif direction == 'south' and current_location.south != None:
+        elif direction in ['south', 's'] and current_location.south != None:
             current_location = current_location.south
             print(current_location.name + '\n' + current_location.description)
-        elif direction == 'east' and current_location.east != None:
+        elif direction in ['east', 'e'] and current_location.east != None:
             current_location = current_location.east
             print(current_location.name + '\n' + current_location.description)
-        elif direction == 'west' and current_location.west != None:
+        elif direction in ['west', 'w'] and current_location.west != None:
             current_location = current_location.west
             print(current_location.name + '\n' + current_location.description)
         else:

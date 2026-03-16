@@ -37,11 +37,15 @@ class Character:
         number = input('>')
         number = int(number)
         try:
-            print(f'resting for {number * 2} hours...')
-            time.sleep(number * 2)
-            self.hp = self.hp + number
-            if self.hp > self.max_hp:
-                self.hp = self.max_hp 
+            if number >= 0:
+                print(f'resting for {number * 2} hours...')
+                time.sleep(number * 2)
+                print('you have rested')
+                self.hp = self.hp + number
+                if self.hp > self.max_hp:
+                    self.hp = self.max_hp 
+            else:
+                print('must be a positive number')
         except ValueError:
             print('you must enter a number in digit form')
 
@@ -80,7 +84,7 @@ class Character:
     def heal_self(self):
         # Allows the player to consume a healing item to recover hp
         player_input = input('>').lower()
-        if player_input in self.inv and player_input in items.items.keys():
+        if player_input in self.inv and player_input in items.items.keys() and items.items[player_input].type == 'healing':
             print(f'used {player_input} to heal {items.items[player_input].hpheal} health points')
             try:
                 if self.hp + items.items[player_input].hpheal > self.max_hp and self.inv[player_input] == 1:
