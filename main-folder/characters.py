@@ -17,7 +17,10 @@ class Character:
 
     def attack(self, target):
         # Attacks enemies
-        target.hp -= (self.weapon.dmg - target.armor.defense)
+        if target.armor.defense <= self.weapon.dmg:
+            target.hp -= (self.weapon.dmg - target.armor.defense)
+        elif target.armor.defense > self.weapon.dmg:
+            target.hp -= 0
 
     def lvlup(self):
         # Level up
@@ -120,19 +123,14 @@ class Enemy:
 
     def attack(self, target):
         # Attacks player
-        target.hp -= (self.weapon.dmg - target.armor.defense)
+        if target.armor.defense <= self.weapon.dmg:
+            target.hp -= (self.weapon.dmg - target.armor.defense)
+        elif target.armor.defense > self.weapon.dmg:
+            target.hp -= 0
 
     def ressurection(self):
         # Makes so that enemies have full health on encounter
             self.hp = self.max_hp
-
-# Enemies
-enemies = {
-'goblin': Enemy(name = 'Goblin', max_hp = 5, hp = 5, weapon = weapons.weapons['rusty dagger'],
-                armor = armor.armors['no armor'], expvalue = 10, loot = {'rusty dagger': 1, 'rag': 1}),
-'slime': Enemy(name = 'Slime', max_hp = 8, hp = 8, weapon = weapons.weapons['acid body'],
-               armor = armor.armors['no armor'], expvalue = 20, loot = {'slime chunk': 1}),                
-                }
 
 # To display the inventory and to add stuff to it, it's a mess but it works
 def display_inventory(inventory):
@@ -149,3 +147,14 @@ def add_to_inventory(inventory, item):
         else:
             inventory.setdefault(key, value)
             print(str(key) + ' added to inventory')
+
+# Enemies
+enemies = {
+'goblin': Enemy(name = 'Goblin', max_hp = 5, hp = 5, weapon = weapons.weapons['rusty dagger'],
+                armor = armor.armors['no armor'], expvalue = 10, loot = {'rusty dagger': 1, 'rag': 1}),
+'slime': Enemy(name = 'Slime', max_hp = 8, hp = 8, weapon = weapons.weapons['acid body'],
+               armor = armor.armors['no armor'], expvalue = 20, loot = {'slime chunk': 1}),                
+'wild boar': Enemy(name = 'Wild Boar', max_hp = 20, hp = 20, weapon = weapons.weapons['boar tusk'],
+                   armor = armor.armors['hardened mud layer'], expvalue = 80, 
+                   loot = {'boar tusk': 2, 'boar skin': 1, 'strong animal bone': 10, 'redmeat piece': 15, 'boar hoof': 4})
+                }

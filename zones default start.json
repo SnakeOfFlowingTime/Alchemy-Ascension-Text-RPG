@@ -8,8 +8,12 @@
     "town exit items": {
         "t0 bandage": 3
     },
-    "forest 0 0 items": {
+    "very low danger forest items": {
         "stick": 2,
         "small rock": 1
+    },
+    "low danger forest items": {
+        "stick": 5,
+        "small rock": 3
     }
 }

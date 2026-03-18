@@ -30,6 +30,22 @@ value = 1, type = 'healing',hpheal = 3),
 
 'small rock': Item(name = 'Small Rock', id = 'small rock', description = 'a small piece of stone', type = 'miscellaneous',value = 0),
 
-'stick': Item(name = 'Stick', id = 'stick', description = 'a normal stick', type = 'miscellaneous', value = 0)
+'stick': Item(name = 'Stick', id = 'stick', description = 'a normal stick', type = 'miscellaneous', value = 0),
+
+'boar skin': Item(name = 'Wild Boar Skin', id = 'boar skin', 
+description = 'the skin of a wild boar, can be further processed into many useful things', 
+type = 'animal drop', value = 10),
+
+'strong animal bone': Item(name = 'Strong Animal Bone', id = 'strong animal bone', 
+description = 'animal bone that can be use in tool making and other things, can also be used in some alchemical processes or further processed for many usefull byproducts',
+type = 'animal drop', value = 2),
+
+'redmeat piece': Item(name = 'Red Meat Piece', id = 'redmeat piece', 
+description = 'good meat that has a lot of nutrients, each piece is 1kg',
+type = 'animal drop', value = 1),
+
+'boar hoof': Item(name = 'Wild Boar Hoof', id = 'boar hoof', 
+description = 'the hoof of a wild boar, can be used for cooking or futher processed for some usefull materials',
+type = 'animal drop', value = 1),
 
 }

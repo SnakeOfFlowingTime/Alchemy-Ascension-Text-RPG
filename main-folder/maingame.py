@@ -69,17 +69,31 @@ def wipe():
 def enemy_spawn(number):
     # this "spawns" the enemy
     if battling == False:
-        if current_location.danger == 'Low Danger':
+        if current_location.danger == 'Very Low Danger':
             if number == 1:
-                random_chance = 0
+                random_chance = random.randint(0, 30)
+            else:
+                random_chance = random.randint(0, 100)
+            if random_chance <= 30:
+                chosen_enemy = random.choice(very_weak_enemies)
+                return chosen_enemy
+            else:
+                print("you are safe, for now...")
+                return False
+        elif current_location.danger == 'Low Danger':
+            if number == 1:
+                random_chance = random.randint(0, 60)
             else:
                 random_chance = random.randint(0, 100)
             if random_chance <= 30:
                 chosen_enemy = random.choice(weak_enemies)
                 return chosen_enemy
+            elif random_chance <= 60 and random_chance > 30:
+                chosen_enemy = random.choice(very_weak_enemies)
             else:
                 print("you are safe, for now...")
                 return False
+    
     else:
         return False
 
@@ -97,8 +111,11 @@ def battle(enemy):
     
     # Attack
     if player_input in ['attack', 'hit', 'a']:
-        player.attack(target=enemy)
-        print(f'{player.name} has attacked {enemy.name} with {player.weapon.name} for {player.weapon.dmg - enemy.armor.defense}.')
+        player.attack(target = enemy)
+        if enemy.armor.defense <= player.weapon.dmg:
+            print(f'{player.name} has attacked {enemy.name} with {player.weapon.name} for {player.weapon.dmg - enemy.armor.defense}.')
+        elif enemy.armor.defense > player.weapon.dmg:
+            print(f'{player.name} has attacked {enemy.name} with {player.weapon.name} for 0.')
         print(f'{enemy.name} has {enemy.hp} health left')
         input('>')
     # Use
@@ -126,7 +143,10 @@ def battle(enemy):
     
     # Enemy attack
     Enemy.attack(self=enemy, target=player)
-    print(f'{enemy.name} has attacked {player.name} with {enemy.weapon.name} for {enemy.weapon.dmg - player.armor.defense}')
+    if player.armor.defense <= enemy.weapon.dmg:
+        print(f'{enemy.name} has attacked {player.name} with {enemy.weapon.name} for {enemy.weapon.dmg - player.armor.defense}')
+    elif player.armor.defense > enemy.weapon.dmg:
+        print(f'{enemy.name} has attacked {player.name} with {enemy.weapon.name} for 0')
     print(f'{player.name} has {player.hp} health left')
     input('>')
 
@@ -155,7 +175,8 @@ player = Character(name=player_data['name'], max_hp=player_data['maxhp'], hp=pla
                     weapon=weapons.weapons[player_data['weapon']], lvl=player_data['level'],
                     exp=player_data['exp'], money=player_data['money'])
 
-weak_enemies = [characters.enemies['goblin'], characters.enemies['slime']]
+very_weak_enemies = [characters.enemies['goblin'], characters.enemies['slime']]
+weak_enemies = [characters.enemies['wild boar']]
 battling = False
 current_location = Zones.zones[player_data['location']]
 
