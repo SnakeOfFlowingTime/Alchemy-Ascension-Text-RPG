@@ -9,4 +9,6 @@ remember to save the game often as it definitely has bugs and it will definitely
 
 the save files, if you want to modify them, along with the readme and license are in the _internal folder
 
+i plan on adding 1 new zone, weapon, armor and enemy everyday, so that it isn't too boring for me and the game get's new things
+
 idk what constitutes a proper readme so this will have to do
