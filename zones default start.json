@@ -16,5 +16,10 @@
         "stick": 5,
         "small rock": 3
     },
-    "adventurer guild items": {}
+    "adventurer guild items": {
+        "copper coin": 2
+    },
+    "town farm items": {
+        "iron scythe": 1
+    }
 }

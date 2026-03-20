@@ -21,14 +21,14 @@ items = {
 description = 'bandages infused with specially treated slime, very effective in healing small wounds', 
 value = 1, type = 'healing',hpheal = 3),
 
-'rag': Item(name = 'Rag', id = 'rag', description = 'a torn and dirty piece of rag', type = 'miscellaneous',value = 1),
+'rag': Item(name = 'Rag', id = 'rag', description = 'a torn and dirty of rag', type = 'miscellaneous',value = 1),
 
 'slime chunk': Item(name = 'Slime Chunck', id = 'slime chunk',
                     description = 'low level ingredient widely used in alchemy, sourced from slimes', type = 'alchemy ingredient',value = 2),
 
 'copper coin': Item(name = 'Copper coin', id = 'copper coin', description = 'coin made from copper', type = 'money', value = 1),
 
-'small rock': Item(name = 'Small Rock', id = 'small rock', description = 'a small piece of stone', type = 'miscellaneous',value = 0),
+'small rock': Item(name = 'Small Rock', id = 'small rock', description = 'a small of stone', type = 'miscellaneous',value = 0),
 
 'stick': Item(name = 'Stick', id = 'stick', description = 'a normal stick', type = 'miscellaneous', value = 0),
 
@@ -43,7 +43,7 @@ description = 'the skin of a wolf, can be further processed for usefull material
 description = 'animal bone that can be use in tool making and other things, can also be used in some alchemical processes or further processed for many usefull byproducts',
 type = 'animal drop', value = 2),
 
-'meat piece': Item(name = 'Meat Piece', id = 'meat piece', 
+'meat': Item(name = 'Meat', id = 'meat', 
 description = 'good meat that has a lot of nutrients, each piece is 1kg',
 type = 'animal drop', value = 1),
 
@@ -57,4 +57,7 @@ description = 'the canine of a wolf, used for many things including alchemy', ty
 'wolf claw': Item(name = 'Wolf Claw', id = 'wolf claw', 
 description = 'the claw of a wolf, might have some use', type = 'animal drop', value = 1),
 
+'magic mutated rat skin': Item(name = 'Magicaly Mutated Rat Skin', id = 'magic mutated rat skin', 
+description = 'the skin of rat that underwent a magicaly induced mutation, thus growing big and strong, has some uses in alchemy but it other than that it has minimal use', 
+type = 'alchemy ingredient', value = 15),
 }

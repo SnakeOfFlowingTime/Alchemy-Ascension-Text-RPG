@@ -27,5 +27,9 @@ weapons = {
 
 'wolf bite': Weapon(name = 'Wolf Bite', id = 'wolf bite', type = 'piercing', dmg = 3, value = 0),
 
-'heavy iron stick': Weapon(name = 'Heavy Iron Stick', id = 'heavy iron stick', type = 'blunt', dmg = 4, value = 30)
+'heavy iron stick': Weapon(name = 'Heavy Iron Stick', id = 'heavy iron stick', type = 'blunt', dmg = 4, value = 30),
+
+'iron scythe': Weapon(name = 'Iron Scythe', id = 'iron scythe', type = 'slashing', dmg = 3, value = 20),
+
+'rat bite': Weapon(name = 'Rat Bite', id = 'rat bite', type = 'piercing', dmg = 1, value = 0),
 }

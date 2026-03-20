@@ -63,12 +63,17 @@ description = '''this place is further from town, be careful,
 the guard team cleans this place with less frequency''', item = zones_data['low danger forest items'],
 danger = 'Low Danger', npc = None),
 
+'town farm': Zones(name = 'Town Farms', id = 'town farm', 
+description = 'the farms east of town, the source of most food in town',
+item = zones_data['town farm items'], danger = 'No Danger', npc = None)
 }
 
 # Connection between the zones
 zones['town square'].north = zones['town market']
 zones['town square'].south = zones['town exit']
 zones['town square'].west = zones['adventurer guild']
+zones['town square'].east = zones['town farm']
+zones['town farm'].west = zones['town square']
 zones['adventurer guild'].east = zones['town square']
 zones['town exit'].north = zones['town square']
 zones['town exit'].south = zones['very low danger forest']

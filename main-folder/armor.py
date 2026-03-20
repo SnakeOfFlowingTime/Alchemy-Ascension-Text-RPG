@@ -16,9 +16,11 @@ armors = {
 
 'weak wood armor': Armor(name = 'Weak Wood Armor', id = 'weak wood armor', type = 'wood', defense = 1, value = 10),
 
-'iron plate armor': Armor(name = 'Iron Plate Armor', id = 'iron plate armor', type = 'plate', defense = 5, value = 200),
+'iron plate armor': Armor(name = 'Iron Plate Armor', id = 'iron plate armor', type = 'plate', defense = 5, value = 1000),
 
 'hardened mud layer': Armor(name = 'Hardened Mud Layer', id = 'hardened mud layer', type = 'earth', defense = 1, value= 0),
 
-'wood armor': Armor(name = 'Wood Armor', id =  'wood armor', type = 'wood', defense = 2, value = 30),
+'wood armor': Armor(name = 'Wood Armor', id =  'wood armor', type = 'wood', defense = 2, value = 80),
+
+'leather armor': Armor(name = 'Leather Armor', id = 'leather armor', type = 'leather', defense = 3, value = 300)
 }
