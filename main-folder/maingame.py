@@ -36,7 +36,13 @@ def save():
         zones_data = {'town square items': Zones.zones['town square'].item,
                 'town market items': Zones.zones['town market'].item,
                 'town exit items': Zones.zones['town exit'].item,
-                'forest 0 0 items': Zones.zones['forest 0 0'].item
+                'adventurer guild items': Zones.zones['adventurer guild'].item,
+                'very low danger forest items': Zones.zones['very low danger forest'].item,
+                'low danger forest items': Zones.zones['low danger forest'].item,
+                'town farm items': Zones.zones['town farm'].item,
+                'alchemy guild items': Zones.zones['alchemy guild'].item,
+                'medium danger forest items': Zones.zones['medium danger forest'].item,
+
                    }
         json.dump(zones_data, zone_save_file, indent=4)
 

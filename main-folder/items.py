@@ -47,6 +47,9 @@ type = 'animal drop', value = 2),
 description = 'good meat that has a lot of nutrients, each piece is 1kg',
 type = 'animal drop', value = 1),
 
+'boar tusk': Item(name = 'Wild Boar Tusk', id = 'boar tusk', 
+description = 'the tusk of a wild boar, useful as a material', type = 'animal drop', value = 5),
+
 'boar hoof': Item(name = 'Wild Boar Hoof', id = 'boar hoof', 
 description = 'the hoof of a wild boar, can be used for cooking or futher processed for some useful materials',
 type = 'animal drop', value = 1),

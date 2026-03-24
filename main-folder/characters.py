@@ -56,6 +56,11 @@ class Character:
         # Allows the player to change weapon
         player_input = input('>').lower()
         if player_input in self.inv and player_input in weapons.weapons.keys():
+            if self.lvl >= weapons.weapons[player_input].lvlreq:
+                pass
+            else:
+                print("you don't meet the minimun requirements to use this weapon")
+                return
             add_to_inventory(self.inv, {self.weapon.id: 1})
             try:
                 self.weapon = weapons.weapons[player_input]
@@ -72,6 +77,11 @@ class Character:
         # Allows the player to change armor
         player_input = input('>').lower()
         if player_input in self.inv and player_input in armor.armors.keys():
+            if self.lvl >= armor.armors[player_input].lvlreq:
+                pass
+            else:
+                print("you don't meet the minimun requirements to use this armor")
+                return
             add_to_inventory(self.inv, {self.armor.id: 1})
             try:
                 self.armor = armor.armors[player_input]
@@ -154,9 +164,9 @@ enemies = {
                 armor = armor.armors['no armor'], expvalue = 10, loot = {'rusty dagger': 1, 'rag': 1}),
 'slime': Enemy(name = 'Slime', max_hp = 8, hp = 8, weapon = weapons.weapons['acid body'],
                armor = armor.armors['no armor'], expvalue = 20, loot = {'slime chunk': 1}),                
-'wild boar': Enemy(name = 'Wild Boar', max_hp = 20, hp = 20, weapon = weapons.weapons['boar tusk'],
+'wild boar': Enemy(name = 'Wild Boar', max_hp = 20, hp = 20, weapon = weapons.weapons['boar tusks'],
                    armor = armor.armors['hardened mud layer'], expvalue = 50, 
-                   loot = {'boar tusk': 2, 'boar skin': 1, 'strong animal bone': 10, 'meat': 15, 'boar hoof': 4}),
+                   loot = {'boar tusk': 4, 'boar skin': 1, 'strong animal bone': 10, 'meat': 15, 'boar hoof': 4}),
 'wolf': Enemy(name = 'Wolf', max_hp = 15, hp = 15, weapon = weapons.weapons['wolf bite'], armor = armor.armors['no armor'], expvalue = 40,
             loot = {'wolf skin': 1, 'wolf tooth': 4, 'strong animal bone': 20, 'meat': 15, 'wolf claw': 18}),
 'big rat': Enemy(name = 'Magic Mutated Rat', max_hp= 4, hp = 4, weapon = weapons.weapons['rat bite'],

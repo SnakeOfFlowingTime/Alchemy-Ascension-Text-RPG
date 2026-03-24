@@ -1,0 +1,12 @@
+{
+    "name": "Player",
+    "hp": 15,
+    "maxhp": 15,
+    "inventory": {},
+    "weapon": "fists",
+    "armor": "linen clothing",
+    "level": 1,
+    "exp": 0,
+    "money": 0,
+    "location": "town square"
+}
