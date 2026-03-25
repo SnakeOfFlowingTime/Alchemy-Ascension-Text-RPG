@@ -15,6 +15,7 @@ class Zones:
 
     def getItem(self, item_name):
         # Get stuff from the zone
+        item_name = ' '.join(item_name)
         if item_name in self.item:
             for key, value in self.item.items():
                 if item_name == key:
