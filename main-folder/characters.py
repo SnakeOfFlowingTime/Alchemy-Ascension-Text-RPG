@@ -3,7 +3,7 @@ import weapons, armor, items, time
 
 # Player character
 class Character:
-    def __init__(self, name: str, max_hp: int, hp: int, inv: dict, weapon, armor, lvl: int, exp: int, money: int):
+    def __init__(self, name: str, max_hp: int, hp: int, inv: dict, weapon, armor, lvl: int, exp: int, money: int, quests_completed: list):
         self.name     = name
         self.max_hp   = max_hp
         self.hp       = hp
@@ -13,6 +13,7 @@ class Character:
         self.lvl = lvl
         self.exp = exp
         self.money = money
+        self.quests_completed = quests_completed
 
 
     def attack(self, target):

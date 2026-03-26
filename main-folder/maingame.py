@@ -1,5 +1,5 @@
 # Imports, a lot of them
-import time, shutil, sys, os, Zones, titlescreen, armor, weapons, characters, random, json, npcs, items
+import time, shutil, sys, os, Zones, titlescreen, armor, weapons, characters, random, json, npcs, items, quests
 from characters import add_to_inventory
 from characters import display_inventory
 from characters import Character
@@ -26,7 +26,8 @@ def save():
                'level': player.lvl,
                'exp': player.exp,
                'money': player.money,
-               'location': current_location.id
+               'location': current_location.id,
+               'quests completed': player.quests_completed
                     }
         json.dump(player_data, save_file, indent=4)
     
@@ -190,7 +191,7 @@ elif return_output == 'load':
 player = Character(name=player_data['name'], max_hp=player_data['maxhp'], hp=player_data['hp'],
                    inv=player_data['inventory'],armor=armor.armors[player_data['armor']],
                     weapon=weapons.weapons[player_data['weapon']], lvl=player_data['level'],
-                    exp=player_data['exp'], money=player_data['money'])
+                    exp=player_data['exp'], money=player_data['money'], quests_completed=player_data['quests completed'])
 
 very_weak_enemies = [characters.enemies['goblin'], characters.enemies['slime']]
 weak_enemies = [characters.enemies['wild boar'], characters.enemies['wolf'], characters.enemies['bear']]
@@ -256,6 +257,24 @@ Weapon Type: {player.weapon.type}   Armor Type: {player.armor.type}
 Weapon Damage: {player.weapon.dmg}  Armor Defense: {player.armor.defense}
 Money: {player.money}
 """)    
+    
+    # Quests
+    elif player_input[0] in ['quest', 'task', 'quests', 'tasks']:
+        try:
+            if current_location.npc != None and len(current_location.npc) == 1 and current_location.npc[0] in npcs.quest_npcs:
+                print('what quest would you like to hand in?')
+                print(f"{npcs.quest_npcs[current_location.npc[0]].name}: {npcs.quest_npcs[current_location.npc[0]].quest}")
+                hand_in = input('>').lower().strip()
+                if hand_in in npcs.quest_npcs[current_location.npc[0]].quest and hand_in not in player.quests_completed:
+                    if quests.quests[hand_in].complete_quest(target = player) == 'completed':
+                        player.quests_completed.append(hand_in)
+                else:
+                    print('this quest does not exist or you have already completed it')
+            else:
+                print('there are no quests here')
+        except KeyError:
+            print('there are no quests here')
+            
     
     # Selling stuff
     elif player_input[0] in ['sell']:

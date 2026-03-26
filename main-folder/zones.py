@@ -51,7 +51,7 @@ zones = {
 
 'adventurer guild': Zones(name = "The Adventurer's Guild", id = 'adventurer guild',
 description = 'place where adventurers accept task posted by clients in exchange for a reward',
-item = zones_data['adventurer guild items'], danger = 'No Danger', npc = None),
+item = zones_data['adventurer guild items'], danger = 'No Danger', npc = ['quest board']),
 
 'very low danger forest': Zones(name = 'Very Low Danger Forest', id ='very low danger forest',
  description = """there's a lot of trees nearby,

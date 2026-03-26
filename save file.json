@@ -8,5 +8,6 @@
     "level": 1,
     "exp": 0,
     "money": 0,
-    "location": "town square"
+    "location": "town square",
+    "quests completed": []
 }

@@ -1,5 +1,14 @@
-import items, weapons, armor, json, os, sys
+import items, weapons, armor, json, os, sys, quests
 from characters import add_to_inventory
+
+class QuestNpc:
+    def __init__(self, name: str, id: str, description: str, quest: list, location: str):
+        self.name = name
+        self.id = id
+        self.description = description
+        self.quest = quest
+        self.location = location
+        
 # Merchant npcs
 class Merchant:
     def __init__(self, name: str, id: str, description: str, selling: dict, location: str):
@@ -175,10 +184,15 @@ with open(merchant_file) as merchant_save:
     merchant_data = json.load(merchant_save)
 
 
+# Quest npcs
+quest_npcs = {'quest board': QuestNpc(name = 'Quest Board', id = 'quest board', 
+description = "the quest board of the adventure's guild", quest = ['gather slime chunks'],
+location = 'adventurer guild')}
+
 # Merchant npcs
-merchants = {'town merchant': Merchant(name = 'Town Nerchant', id = 'town merchant',
-                                       description = 'just an ordinary merchant in an ordinary town',
-                                       selling = merchant_data['town market merchant stock'], location ='town market',
+merchants = {'town merchant': Merchant(name = 'Town Merchant', id = 'town merchant',
+description = 'just an ordinary merchant in an ordinary town',
+selling = merchant_data['town market merchant stock'], location = 'town market',
                                        )
 
 
