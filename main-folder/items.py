@@ -24,9 +24,13 @@ value = 1, type = 'healing', hpheal = 3),
 'rag': Item(name = 'Rag', id = 'rag', description = 'a torn and dirty of rag', type = 'miscellaneous',value = 1),
 
 'slime chunk': Item(name = 'Slime Chunck', id = 'slime chunk',
-                    description = 'low level ingredient widely used in alchemy, sourced from slimes', type = 'alchemy ingredient',value = 2),
+description = 'low level ingredient widely used in alchemy, sourced from slimes', type = 'alchemy ingredient',value = 2),
 
 'copper coin': Item(name = 'Copper coin', id = 'copper coin', description = 'coin made from copper', type = 'money', value = 1),
+
+'silver coin': Item(name = 'Silver Coin', id = 'silver coin', description = 'coin made from silver', type = 'money', value = 100),
+
+'gold coin': Item(name = 'Gold Coin', id = 'gold coin', description = 'coin made from gold', type = 'money', value = 10000),
 
 'small rock': Item(name = 'Small Rock', id = 'small rock', description = 'a small of stone', type = 'miscellaneous',value = 0),
 

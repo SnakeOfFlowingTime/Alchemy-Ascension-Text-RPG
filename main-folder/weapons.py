@@ -34,7 +34,7 @@ weapons = {
 
 'rat bite': Weapon(name = 'Rat Bite', id = 'rat bite', type = 'piercing', dmg = 1, value = 0, lvlreq = 0),
 
-'refined iron sword': Weapon(name = 'Refined Iron Sword', id = 'refined iron sword', type = 'slashing', dmg = 8, value = 200, lvlreq = 5),
+'refined iron sword': Weapon(name = 'Refined Iron Sword', id = 'refined iron sword', type = 'slashing', dmg = 8, value = 600, lvlreq = 5),
 
 'bear punch': Weapon(name = 'Bear Punch', id = 'bear punch', type = 'blunt', dmg = 4, value = 0, lvlreq = 0),
 

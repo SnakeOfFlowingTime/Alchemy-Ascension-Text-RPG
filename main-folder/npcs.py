@@ -18,7 +18,7 @@ class Merchant:
         self.selling = selling
         self.location = location
     
-    # For the player to item stuff, should be working
+    # For the player to sell stuff, should be working
     def buy(self, target, item, number):
         try:
             
@@ -38,7 +38,7 @@ class Merchant:
                         return
                 
                 # Checks if number is positive and deducts the item from player and gives the money
-                if number > 0 and item in items.items and items.items[f'{item}'].value != 0:
+                if number != None and number > 0 and item in items.items and items.items[f'{item}'].value != 0:
                     if number < target.inv[item]:
                         target.inv[item] -= number
                         target.money += items.items[item].value * number
@@ -49,7 +49,7 @@ class Merchant:
                         print(f"you've sold: {number} {item}")
                     else:
                         print(f"you don't have that much {item} to sell")
-                elif number > 0 and item in weapons.weapons and weapons.weapons[f'{item}'].value != 0:
+                elif number != None and number > 0 and item in weapons.weapons and weapons.weapons[f'{item}'].value != 0:
                     if number < target.inv[item]:
                         target.inv[item] -= number
                         target.money += weapons.weapons[item].value * number
@@ -60,7 +60,7 @@ class Merchant:
                         print(f"you've sold: {number} {item}")
                     else:
                         print(f"you don't have that much {item} to sell")
-                elif number > 0 and item in armor.armors and armor.armors[f'{item}'].value != 0:
+                elif number != None and number > 0 and item in armor.armors and armor.armors[f'{item}'].value != 0:
                     if number < target.inv[item]:
                         target.inv[item] -= number
                         target.money += armor.armors[item].value * number
@@ -117,7 +117,7 @@ class Merchant:
                                 print('congratulations on your purchase')
                                 self.selling[buying] -= number
                             elif number > self.selling[buying]:
-                                print(f"i don't have that many {buying} to item")
+                                print(f"i don't have that many {buying} to sell")
                                 return
                             elif number == self.selling[buying]:
                                 del self.selling[buying]
@@ -133,7 +133,7 @@ class Merchant:
                                 print('congratulations on your purchase')
                                 self.selling[buying] -= number
                             elif number > self.selling[buying]:
-                                print(f"i don't have that many {buying} to item")
+                                print(f"i don't have that many {buying} to sell")
                                 return
                             elif number == self.selling[buying]:
                                 del self.selling[buying]
@@ -149,7 +149,7 @@ class Merchant:
                                 print('congratulations on your purchase')
                                 self.selling[buying] -= number
                             elif number > self.selling[buying]:
-                                print(f"i don't have that many {buying} to item")
+                                print(f"i don't have that many {buying} to sell")
                                 return
                             elif number == self.selling[buying]:
                                 del self.selling[buying]
@@ -166,7 +166,7 @@ class Merchant:
                 else:
                     print(f"i don't have {number} {buying}")
             else:
-                print(f"i don't item {buying}")
+                print(f"i don't sell {buying}")
         except ValueError:
             print('must be a number in digit form')
 
@@ -186,14 +186,17 @@ with open(merchant_file) as merchant_save:
 
 # Quest npcs
 quest_npcs = {'quest board': QuestNpc(name = 'Quest Board', id = 'quest board', 
-description = "the quest board of the adventure's guild", quest = ['gather slime chunks'],
+description = "the quest board of the adventure's guild", quest = ['gather slime chunks', 'clear rat infestation'],
 location = 'adventurer guild')}
 
 # Merchant npcs
 merchants = {'town merchant': Merchant(name = 'Town Merchant', id = 'town merchant',
 description = 'just an ordinary merchant in an ordinary town',
-selling = merchant_data['town market merchant stock'], location = 'town market',
-                                       )
+selling = merchant_data['town market merchant stock'], location = 'town market'),
+
+'alchemy items vendor': Merchant(name = 'Alchemy Items Vendor', id = 'alchemy items vendor', 
+description = 'a vendor consigned by some alchemists to sell some of their products', 
+selling = merchant_data['alchemy items vendor stock'], location = 'alchemy guild')
 
 
 

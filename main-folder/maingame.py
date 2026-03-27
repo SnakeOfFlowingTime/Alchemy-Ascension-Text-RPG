@@ -50,7 +50,8 @@ def save():
     # Save merchant data
     merchant_file = file_path('merchant save file.json')
     with open(merchant_file, 'w') as merchant_save:
-        merchant_data = {'town market merchant stock': npcs.merchants['town merchant'].selling
+        merchant_data = {'town market merchant stock': npcs.merchants['town merchant'].selling,
+                         'alchemy items vendor stock': npcs.merchants['alchemy items vendor'].selling,
                          }
         json.dump(merchant_data, merchant_save, indent=4)
 
@@ -95,8 +96,27 @@ def enemy_spawn(number):
             if random_chance <= 30:
                 chosen_enemy = random.choice(weak_enemies)
                 return chosen_enemy
-            elif random_chance <= 60 and random_chance > 30:
+            elif random_chance <= 60 and random_chance > 30 and random_chance > 0:
                 chosen_enemy = random.choice(very_weak_enemies)
+                return chosen_enemy
+            elif random_chance == 0:
+                chosen_enemy = random.choice(weak_boss)
+                return chosen_enemy
+            else:
+                print("you are safe, for now...")
+                return False
+        elif current_location.danger == 'Rat Infestation':
+            if number == 1:
+                random_chance = 0
+                if 'clear rat infestation' in player.quests_completed:
+                    random_chance = 100
+            else:
+                if 'clear rat infestation' in player.quests_completed:
+                    random_chance = 100
+                else:
+                    random_chance = random.randint(0, 100)
+            if random_chance <= 10:
+                chosen_enemy = random.choice(magic_rats)
                 return chosen_enemy
             else:
                 print("you are safe, for now...")
@@ -114,11 +134,11 @@ def battle(enemy):
     
     # Player action
     print('what do you do?')
-    print('(a)ttack, (u)se item, (e)scape, or (s)kip turn?')
+    print('(a)ttack (or just press enter), (u)se item, (e)scape, or (s)kip turn?')
     player_input = input('>').lower()
     
     # Attack
-    if player_input in ['attack', 'hit', 'a']:
+    if player_input in ['attack', 'hit', 'a', '']:
         player.attack(target = enemy)
         if enemy.armor.defense <= player.weapon.dmg:
             print(f'{player.name} has attacked {enemy.name} with {player.weapon.name} for {player.weapon.dmg - enemy.armor.defense}.')
@@ -158,6 +178,7 @@ def battle(enemy):
     print(f'{player.name} has {player.hp} health left')
     input('>')
 
+# Gets the first integer in a command
 def list_str_to_int(input):
     for i in input:
         try:
@@ -195,6 +216,8 @@ player = Character(name=player_data['name'], max_hp=player_data['maxhp'], hp=pla
 
 very_weak_enemies = [characters.enemies['goblin'], characters.enemies['slime']]
 weak_enemies = [characters.enemies['wild boar'], characters.enemies['wolf'], characters.enemies['bear']]
+weak_boss= [characters.enemies['goblin warrior']]
+magic_rats = [characters.enemies['big rat']]
 battling = False
 current_location = Zones.zones[player_data['location']]
 
@@ -282,11 +305,18 @@ Money: {player.money}
             # If player only input the command with not arguments
             if len(player_input) == 1:
                 print("what would you like to sell?")
+                print(player.inv)
                 sell = input('>').lower()
                 sell = sell.strip()
                 print("and how many would you like to sell?")
-                number = int(input('>').strip())
-                npcs.merchants[current_location.npc[0]].buy(target=player, item=sell, number=number)
+                try:
+                    number = int(input('>').strip())
+                except ValueError:
+                    number = ''
+                if isinstance(number, int):
+                    npcs.merchants[current_location.npc[0]].buy(target=player, item=sell, number=number)
+                else:
+                    print('please enter a valid number')
             
             # If the player input the command with arguments
             if len(player_input) > 1:

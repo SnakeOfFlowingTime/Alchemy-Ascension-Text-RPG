@@ -30,7 +30,7 @@ class Character:
             self.lvl += 1
             self.max_hp = self.max_hp + (self.lvl - 1) * 2
             self.hp = self.max_hp
-            print(f'you have succefuly leveled up, you are now level: {self.lvl}')
+            print(f'you have leveled up, you are now level: {self.lvl}')
             print(f'your remaining experience: {self.exp} points')
         else:
             print(f"you don't have enough experience points to level up, current exp: {self.exp}, exp needed to level up: {self.lvl * 100}")

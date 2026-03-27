@@ -37,4 +37,11 @@ quests = {'gather slime chunks': Quests(name = 'Gather Slime Chunks', id = 'gath
 description = "slime chunks are widely used in alchemy, so there's always a demand," \
 " the adventurer's guild is paying 30 copper coins for every 10 slime chunks handed in",
 requirements = {'slime chunk': 10}, reward = {'copper coin': 30}, type = 'unlimited', stage = None),
+
+'clear rat infestation': Quests(name = 'Clear Rat Infestation', id = 'clear rat infestation', 
+description = 
+"""the farms are overrun with mutated rats, so the farmers have pooled their money
+to issue a quest at the adventurer's guild, requesting that the pesky rodents be taken care of""",
+requirements = {'magic mutated rat skin': 100},
+reward = {'silver coin': 30}, type = 'singular', stage = None),
 }

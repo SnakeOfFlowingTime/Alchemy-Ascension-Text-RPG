@@ -66,14 +66,14 @@ danger = 'Low Danger', npc = None),
 
 'town farm': Zones(name = 'Town Farms', id = 'town farm', 
 description = 'the farms east of town, the source of most food in town',
-item = zones_data['town farm items'], danger = 'No Danger', npc = None),
+item = zones_data['town farm items'], danger = 'Rat Infestation', npc = None),
 
 'alchemy guild': Zones(name = "Alchemist's Guild", id = 'alchemy guild', 
 description = 
 """unlike the adventurer's guild, this place is as luxurious as it gets,
 being responsible for ranking, protecting the rights of,
 and representing the highest profession of the continent: alchemists""",
-item = zones_data['alchemy guild items'], danger = 'No danger', npc = None),
+item = zones_data['alchemy guild items'], danger = 'No danger', npc = ['alchemy items vendor']),
 
 'medium danger forest': Zones(name = 'Medium Danger Forest', id = 'medium danger forest', 
 description = 
