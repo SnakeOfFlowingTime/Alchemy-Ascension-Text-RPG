@@ -191,11 +191,11 @@ location = 'adventurer guild')}
 
 # Merchant npcs
 merchants = {'town merchant': Merchant(name = 'Town Merchant', id = 'town merchant',
-description = 'just an ordinary merchant in an ordinary town',
+description = 'a buy anything sell everything merchant in one the southern border towns',
 selling = merchant_data['town market merchant stock'], location = 'town market'),
 
 'alchemy items vendor': Merchant(name = 'Alchemy Items Vendor', id = 'alchemy items vendor', 
-description = 'a vendor consigned by some alchemists to sell some of their products', 
+description = 'a vendor consigned by some alchemists to sell some products', 
 selling = merchant_data['alchemy items vendor stock'], location = 'alchemy guild')
 
 

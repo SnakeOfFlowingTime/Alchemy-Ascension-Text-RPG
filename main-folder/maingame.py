@@ -27,7 +27,8 @@ def save():
                'exp': player.exp,
                'money': player.money,
                'location': current_location.id,
-               'quests completed': player.quests_completed
+               'quests completed': player.quests_completed,
+               'enemy kill counter': enemy_kill_counter
                     }
         json.dump(player_data, save_file, indent=4)
     
@@ -164,8 +165,20 @@ def battle(enemy):
     # What to do when win
     if enemy.hp <= 0 and player.hp > 0:
         add_to_inventory(player.inv, enemy.loot)
-        player.exp += enemy.expvalue
-        print(f"Exp + {enemy.expvalue}")
+        enemy_killed = {enemy.name: 1}
+        for key, value in enemy_killed.items():    
+            if key in enemy_kill_counter:
+                enemy_kill_counter[key] = enemy_kill_counter[key] + value
+            else:
+                enemy_kill_counter.setdefault(key, value)
+        if (player.lvl - 3) <= enemy.lvl:
+            player.exp += enemy.expvalue
+            print(f"Exp + {enemy.expvalue}")
+        elif (player.lvl - 5) <= enemy.lvl:
+            player.exp += int(enemy.expvalue / 2)
+            print(f"Exp + {int(enemy.expvalue / 2)}")
+        elif (player.lvl - 5) > enemy.lvl:
+            print(f"You cannot gain exp from enemies 5 levels lower than you")
         characters.Enemy.ressurection(enemy)
         return False
     
@@ -220,6 +233,7 @@ weak_boss= [characters.enemies['goblin warrior']]
 magic_rats = [characters.enemies['big rat']]
 battling = False
 current_location = Zones.zones[player_data['location']]
+enemy_kill_counter = {}
 
 # Main loop
 while True:
@@ -229,7 +243,7 @@ while True:
         enemy_spawned = enemy_spawn(0)
         if enemy_spawned != False:
             battling = True
-            print(f"you've encountered a(n) {enemy_spawned.name}!")
+            print(f"you've encountered a level {enemy_spawned.lvl} {enemy_spawned.name}!")
 
     # Battles the enemy i think
     while battling == True:
@@ -249,22 +263,67 @@ while True:
         display_inventory(player.inv)
 
     # Look around
-    elif player_input[0] in ['look', 'examine']:
+    elif player_input[0] in ['look']:
         print(current_location.name)
         print(current_location.description)
         if current_location.npc != None:
             print('you see a(n): ' + str(current_location.npc))
         print('you see: ' + str(current_location.item) + ' in this place')
-    
+
+    # Shows info of stuff
+    elif player_input[0] in ['inspect', 'examine', 'info']:
+        if len(player_input) > 1:
+            thing = ' '.join(player_input[1:])
+            if thing in items.items.keys():
+                  print(
+f"""Name: {items.items[thing].name}
+Description: {items.items[thing].description}
+Type: {items.items[thing].type}
+Value: {items.items[thing].value}""")
+            elif thing in weapons.weapons.keys():
+                print(
+f"""Name: {weapons.weapons[thing].name}
+Damage: {weapons.weapons[thing].dmg}
+Type: {weapons.weapons[thing].type}
+Value: {weapons.weapons[thing].value}
+Level Requirement: {weapons.weapons[thing].lvlreq}""")
+            elif thing in armor.armors.keys():
+                print(
+f"""Name: {armor.armors[thing].name}
+Defense: {armor.armors[thing].defense}
+Type: {armor.armors[thing].type}
+Value: {armor.armors[thing].value}
+Level Requirement: {armor.armors[thing].lvlreq}""")
+            elif thing in npcs.merchants.keys():
+                print(
+f"""Name: {npcs.merchants[thing].name}
+Description: {npcs.merchants[thing].description}
+Location: {npcs.merchants[thing].location}""")
+            elif thing in npcs.quest_npcs.keys():
+                print(
+f"""Name: {npcs.merchants[thing].name}
+Description: {npcs.merchants[thing].description}
+Quests: {npcs.quest_npcs[thing].quest}
+Location: {npcs.merchants[thing].location}""")
+            elif thing in quests.quests.keys():
+                print(
+f"""Name: {quests.quests[thing].name}
+Description: {quests.quests[thing].description}
+Requirements: {quests.quests[thing].requirements}
+Rewards: {quests.quests[thing].reward}
+Type: {quests.quests[thing].type}""")
+            else:
+                print(f'no information available on: {thing}')
+
     # Starts a fight
-    elif player_input[0] in ['fight', 'battle']:
+    elif player_input[0] in ['fight', 'battle', 'f']:
         if current_location.danger != 'No Danger' and enemy_spawn(1) and battling == False:
             enemy_spawned = enemy_spawn(1)
         else:
             enemy_spawned = False
         if enemy_spawned != False:
             battling = True
-            print(f"you've encountered a(n) {enemy_spawned.name}!")
+            print(f"you've encountered a level {enemy_spawned.lvl} {enemy_spawned.name}!")
         else:
             print(f"there's no one to {player_input} here")
 

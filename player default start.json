@@ -9,5 +9,6 @@
     "exp": 0,
     "money": 0,
     "location": "town square",
-    "quests completed": []
+    "quests completed": [],
+    "enemy kill counter": {}
 }

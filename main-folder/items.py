@@ -18,10 +18,10 @@ class HealItem(Item):
 # Items
 items = {
 't0 bandage': HealItem(name = 'Slime-Based Bandages', id = 't0 bandage',
-description = 'bandages infused with specially treated slime, very effective in healing small wounds', 
+description = 'bandage infused with specially treated slime, very effective in healing small wounds, heals 3 hp', 
 value = 1, type = 'healing', hpheal = 3),
 
-'rag': Item(name = 'Rag', id = 'rag', description = 'a torn and dirty of rag', type = 'miscellaneous',value = 1),
+'rag': Item(name = 'Rag', id = 'rag', description = 'a torn and dirty piece of rag', type = 'miscellaneous',value = 1),
 
 'slime chunk': Item(name = 'Slime Chunck', id = 'slime chunk',
 description = 'low level ingredient widely used in alchemy, sourced from slimes', type = 'alchemy ingredient',value = 2),
@@ -32,9 +32,9 @@ description = 'low level ingredient widely used in alchemy, sourced from slimes'
 
 'gold coin': Item(name = 'Gold Coin', id = 'gold coin', description = 'coin made from gold', type = 'money', value = 10000),
 
-'small rock': Item(name = 'Small Rock', id = 'small rock', description = 'a small of stone', type = 'miscellaneous',value = 0),
+'small rock': Item(name = 'Small Rock', id = 'small rock', description = 'a small piece of stone', type = 'miscellaneous',value = 0),
 
-'stick': Item(name = 'Stick', id = 'stick', description = 'a normal stick', type = 'miscellaneous', value = 0),
+'stick': Item(name = 'Stick', id = 'stick', description = 'a stick', type = 'miscellaneous', value = 0),
 
 'boar skin': Item(name = 'Wild Boar Skin', id = 'boar skin', 
 description = 'the skin of a wild boar, can be further processed into many useful things', 

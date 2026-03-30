@@ -117,7 +117,7 @@ class Character:
 
 # Enemies character
 class Enemy:
-    def __init__(self, name: str, max_hp: int, hp: int, weapon, armor, expvalue: int, loot: dict):
+    def __init__(self, name: str, max_hp: int, hp: int, weapon, armor, expvalue: int, lvl: int,loot: dict):
         self.name   = name
         self.max_hp = max_hp
         self.hp     = hp
@@ -125,6 +125,7 @@ class Enemy:
         self.loot = loot
         self.armor = armor
         self.expvalue = expvalue
+        self.lvl = lvl
 
     def attack(self, target):
         # Attacks player
@@ -155,21 +156,26 @@ def add_to_inventory(inventory, item):
 
 # Enemies
 enemies = {
-'goblin': Enemy(name = 'Goblin', max_hp = 5, hp = 5, weapon = weapons.weapons['rusty dagger'],
-                armor = armor.armors['no armor'], expvalue = 10, loot = {'rusty dagger': 1, 'rag': 1}),
+'goblin': Enemy(name = 'Goblin', max_hp = 6, hp = 6, weapon = weapons.weapons['rusty dagger'],
+armor = armor.armors['no armor'], expvalue = 6, lvl = 0, loot = {'rusty dagger': 1, 'rag': 1}),
+
 'slime': Enemy(name = 'Slime', max_hp = 8, hp = 8, weapon = weapons.weapons['acid body'],
-               armor = armor.armors['no armor'], expvalue = 20, loot = {'slime chunk': 1}),                
-'wild boar': Enemy(name = 'Wild Boar', max_hp = 20, hp = 20, weapon = weapons.weapons['boar tusks'],
-                   armor = armor.armors['hardened mud layer'], expvalue = 50, 
-                   loot = {'boar tusk': 4, 'boar skin': 1, 'strong animal bone': 10, 'meat': 15, 'boar hoof': 4}),
-'wolf': Enemy(name = 'Wolf', max_hp = 15, hp = 15, weapon = weapons.weapons['wolf bite'], armor = armor.armors['no armor'], expvalue = 40,
-            loot = {'wolf skin': 1, 'wolf tooth': 4, 'strong animal bone': 20, 'meat': 15, 'wolf claw': 18}),
+armor = armor.armors['no armor'], expvalue = 8, lvl = 0, loot = {'slime chunk': 1}), 
+               
+'wild boar': Enemy(name = 'Wild Boar', max_hp = 21, hp = 21, weapon = weapons.weapons['boar tusks'],
+armor = armor.armors['hardened mud layer'], expvalue = 100, lvl = 3,
+loot = {'boar tusk': 4, 'boar skin': 1, 'strong animal bone': 10, 'meat': 15, 'boar hoof': 4}),
+
+'wolf': Enemy(name = 'Wolf', max_hp = 15, hp = 15, weapon = weapons.weapons['wolf bite'], armor = armor.armors['no armor'], 
+expvalue = 10, lvl = 1, loot = {'wolf skin': 1, 'wolf tooth': 4, 'strong animal bone': 20, 'meat': 15, 'wolf claw': 18}),
+
 'big rat': Enemy(name = 'Magic Mutated Rat', max_hp= 4, hp = 4, weapon = weapons.weapons['rat bite'],
-                armor = armor.armors['no armor'], expvalue = 5, 
-                loot = {'magic mutated rat skin': 1, 'meat': 3}),
-'bear': Enemy(name = 'Bear', max_hp = 25, hp = 25, weapon = weapons.weapons['bear punch'], armor = armor.armors['no armor'],
-            expvalue = 150, loot = {'bear skin': 1, 'strong animal bone': 50, 'meat': 50, 'bear paw': 4}),
+armor = armor.armors['no armor'], expvalue = 4, lvl = 0, loot = {'magic mutated rat skin': 1, 'meat': 3}),
+
+'bear': Enemy(name = 'Bear', max_hp = 27, hp = 27, weapon = weapons.weapons['bear punch'], armor = armor.armors['no armor'],
+expvalue = 200, lvl = 4, loot = {'bear skin': 1, 'strong animal bone': 50, 'meat': 50, 'bear paw': 4}),
+
 'goblin warrior': Enemy(name = 'Goblin Warrior', max_hp = 35, hp = 35, weapon = weapons.weapons['iron sword'],
-                        armor = armor.armors['leather armor'], expvalue = 100, loot = {'iron sword': 1, 'leather armor': 1})
+armor = armor.armors['leather armor'], expvalue = 333, lvl = 5, loot = {'iron sword': 1, 'leather armor': 1})
                 }
 

@@ -42,9 +42,9 @@ with open(zones_file) as zones_save:
 
 # Zones
 zones = {
-'town square': Zones(name = 'Town Square', id = 'town square', description = "the center of the town, other than a small rock there's nothing to see",
+'town square': Zones(name = 'Town Square', id = 'town square', description = "the center of the town, is used to host gatherings and events",
                     item = zones_data['town square items'], danger = 'No Danger', npc = None),
-'town market': Zones(name = 'Town Market', id = 'town market', description = "the economic center of the town, best place to buy and sell your wares",
+'town market': Zones(name = 'Town Market', id = 'town market', description = "the economic center of the town, best place to buy and sell",
                     item = zones_data['town market items'], danger = 'No Danger', npc = ['town merchant']),
 'town exit': Zones(name = 'Town Gate', id = 'town exit', description = "a gate leading to the outside of town, it's dangerous out there",
                   item = zones_data['town exit items'], danger = 'No Danger', npc = None),
@@ -78,8 +78,8 @@ item = zones_data['alchemy guild items'], danger = 'No danger', npc = ['alchemy 
 'medium danger forest': Zones(name = 'Medium Danger Forest', id = 'medium danger forest', 
 description = 
 '''this place is quite far from town,
-the only thing keeping the monster population in control
-is the annual monster slaying event organized by the adventurer's guild ''',
+the only thing keeping the monster population in control here
+is the annual monster clearing event organized by the adventurer's guild ''',
 item = zones_data['medium danger forest items'], danger = 'Medium Danger', npc = None),
 
 }

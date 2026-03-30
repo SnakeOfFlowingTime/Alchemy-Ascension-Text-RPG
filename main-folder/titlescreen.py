@@ -44,7 +44,7 @@ def title_screen_options():
             valid_command = False
             print(""" 
 ================================================================================================================================                
-| Note: all commands must be typed exactly or you will get a 'invalid command' prompt.                                         |
+| Note: the information here is quite outdated, it's best to take a look at the code for now.                                  |
 |                                                                                                                              |
 | Commands: ['look' or 'examine'] to get a name, description and items that can be picked up as well as a list of npcs in      |
 |           the current zone;                                                                                                  |
