@@ -32,7 +32,7 @@ weapons = {
 
 'iron scythe': Weapon(name = 'Iron Scythe', id = 'iron scythe', type = 'slashing', dmg = 3, value = 40, lvlreq = 3),
 
-'rat bite': Weapon(name = 'Rat Bite', id = 'rat bite', type = 'piercing', dmg = 1, value = 0, lvlreq = 0),
+'rat bite': Weapon(name = 'Rat Bite', id = 'rat bite', type = 'piercing', dmg = 2, value = 0, lvlreq = 0),
 
 'refined iron sword': Weapon(name = 'Refined Iron Sword', id = 'refined iron sword', type = 'slashing', dmg = 8, value = 600, lvlreq = 5),
 

@@ -174,10 +174,10 @@ def battle(enemy):
         if (player.lvl - 3) <= enemy.lvl:
             player.exp += enemy.expvalue
             print(f"Exp + {enemy.expvalue}")
-        elif (player.lvl - 5) <= enemy.lvl:
+        elif (player.lvl - 5) < enemy.lvl:
             player.exp += int(enemy.expvalue / 2)
             print(f"Exp + {int(enemy.expvalue / 2)}")
-        elif (player.lvl - 5) > enemy.lvl:
+        elif (player.lvl - 5) >= enemy.lvl:
             print(f"You cannot gain exp from enemies 5 levels lower than you")
         characters.Enemy.ressurection(enemy)
         return False

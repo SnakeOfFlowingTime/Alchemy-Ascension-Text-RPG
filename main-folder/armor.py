@@ -17,15 +17,15 @@ armors = {
 
 'weak wood armor': Armor(name = 'Weak Wood Armor', id = 'weak wood armor', type = 'wood', defense = 1, value = 50, lvlreq = 1),
 
-'iron plate armor': Armor(name = 'Iron Plate Armor', id = 'iron plate armor', type = 'plate', defense = 5, value = 2000, lvlreq = 5),
+'iron plate armor': Armor(name = 'Iron Plate Armor', id = 'iron plate armor', type = 'plate', defense = 5, value = 2000, lvlreq = 9),
 
 'hardened mud layer': Armor(name = 'Hardened Mud Layer', id = 'hardened mud layer', type = 'earth', defense = 1, value= 0, lvlreq = 0),
 
 'wood armor': Armor(name = 'Wood Armor', id =  'wood armor', type = 'wood', defense = 2, value = 150, lvlreq = 3),
 
-'leather armor': Armor(name = 'Leather Armor', id = 'leather armor', type = 'leather', defense = 3, value = 400, lvlreq = 3),
+'leather armor': Armor(name = 'Leather Armor', id = 'leather armor', type = 'leather', defense = 3, value = 400, lvlreq = 5),
 
-'iron chainmail armor': Armor(name = 'Iron Chainmail Armor', id = 'iron chainmail armor', type  = 'chainmail', defense = 4, value = 1000, lvlreq = 5),
+'iron chainmail armor': Armor(name = 'Iron Chainmail Armor', id = 'iron chainmail armor', type  = 'chainmail', defense = 4, value = 1000, lvlreq = 7),
 
-'adventurer armor': Armor(name = 'Adventurer Armor', id = 'adventurer armor', type = 'composite', defense = 4, value = 900, lvlreq = 5),
+'adventurer armor': Armor(name = 'Adventurer Armor', id = 'adventurer armor', type = 'composite', defense = 4, value = 900, lvlreq = 7),
 }

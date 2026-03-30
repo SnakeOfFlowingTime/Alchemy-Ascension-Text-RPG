@@ -129,10 +129,12 @@ class Enemy:
 
     def attack(self, target):
         # Attacks player
-        if target.armor.defense <= self.weapon.dmg:
+        if target.armor.defense < self.weapon.dmg:
             target.hp -= (self.weapon.dmg - target.armor.defense)
         elif target.armor.defense > self.weapon.dmg:
             target.hp -= 0
+        elif target.armor.defense == self.weapon.dmg:
+            target.hp -= 1
 
     def ressurection(self):
         # Makes so that enemies have full health on encounter
