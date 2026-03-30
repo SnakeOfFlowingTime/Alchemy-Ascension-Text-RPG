@@ -18,10 +18,12 @@ class Character:
 
     def attack(self, target):
         # Attacks enemies
-        if target.armor.defense <= self.weapon.dmg:
+        if target.armor.defense < self.weapon.dmg:
             target.hp -= (self.weapon.dmg - target.armor.defense)
         elif target.armor.defense > self.weapon.dmg:
             target.hp -= 0
+        elif target.armor.defense == self.weapon.dmg:
+            target.hp -= 1
 
     def lvlup(self):
         # Level up

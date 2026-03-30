@@ -141,10 +141,12 @@ def battle(enemy):
     # Attack
     if player_input in ['attack', 'hit', 'a', '']:
         player.attack(target = enemy)
-        if enemy.armor.defense <= player.weapon.dmg:
+        if enemy.armor.defense < player.weapon.dmg:
             print(f'{player.name} has attacked {enemy.name} with {player.weapon.name} for {player.weapon.dmg - enemy.armor.defense}.')
         elif enemy.armor.defense > player.weapon.dmg:
             print(f'{player.name} has attacked {enemy.name} with {player.weapon.name} for 0.')
+        elif enemy.armor.defense == player.weapon.dmg:
+            print(f'{player.name} has attacked {enemy.name} with {player.weapon.name} for 1')
         print(f'{enemy.name} has {enemy.hp} health left')
         input('>')
     # Use
@@ -184,10 +186,12 @@ def battle(enemy):
     
     # Enemy attack
     Enemy.attack(self=enemy, target=player)
-    if player.armor.defense <= enemy.weapon.dmg:
+    if player.armor.defense < enemy.weapon.dmg:
         print(f'{enemy.name} has attacked {player.name} with {enemy.weapon.name} for {enemy.weapon.dmg - player.armor.defense}')
     elif player.armor.defense > enemy.weapon.dmg:
         print(f'{enemy.name} has attacked {player.name} with {enemy.weapon.name} for 0')
+    elif player.armor.defense == enemy.weapon.dmg:
+        print(f'{enemy.name} has attacked {player.name} with {enemy.weapon.name} for 1')
     print(f'{player.name} has {player.hp} health left')
     input('>')
 
