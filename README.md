@@ -8,6 +8,6 @@ remember to save the game often as it definitely has bugs and it will definitely
 
 the save files, if you want to modify them, along with the readme and license are in the _internal folder.
 
-a good thing about having no players is that there's no one pressuring for updates.
+this is abandoned btw, feel like i have a solid understanding of the basics, which means it won't be getting any updates. (forgot to put this here five months ago when i stopped working on it)
 
 
